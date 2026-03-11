@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: Estuary
-# Addon id: skin.estuary
-# Addon Provider: Team Kodi
+# Addon Name: Sukha
+# Addon id: skin.sukha
+# Addon Provider: Dylan Fisher
 msgid ""
 msgstr ""
 "Project-Id-Version: KODI Main\n"
@@ -9,7 +9,7 @@ msgstr ""
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2023-12-04 09:42+0000\n"
 "Last-Translator: Christian Gade <gade@kodi.tv>\n"
-"Language-Team: English (United States) <https://kodi.weblate.cloud/projects/kodi-add-ons-skins/skin-estuary/en_us/>\n"
+"Language-Team: English (United States) <https://kodi.weblate.cloud/projects/kodi-add-ons-skins/skin-sukha/en_us/>\n"
 "Language: en_us\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,16 +18,16 @@ msgstr ""
 "X-Generator: Weblate 5.2.1\n"
 
 msgctxt "Addon Summary"
-msgid "Estuary skin by phil65. (Kodi's default skin)"
-msgstr "Estuary skin by phil65 and Piers. (Kodi's default skin)"
+msgid "Sukha skin by Dylan Fisher."
+msgstr "Sukha skin by Dylan Fisher."
 
 msgctxt "Addon Description"
-msgid "Estuary is the default skin for Kodi 17.0 and above. It attempts to be easy for first time Kodi users to understand and use."
-msgstr "Estuary is the default skin for Kodi 17.0 and above. It attempts to be easy for first time Kodi users to understand and use."
+msgid "Sukha is the default skin for Kodi 17.0 and above. It attempts to be easy for first time Kodi users to understand and use."
+msgstr "Sukha is the default skin for Kodi 17.0 and above. It attempts to be easy for first time Kodi users to understand and use."
 
 msgctxt "Addon Disclaimer"
-msgid "Estuary is the default skin for Kodi, removing it may cause issues"
-msgstr "Estuary is the default skin for Kodi, removing it may cause issues"
+msgid "Sukha is the default skin for Kodi, removing it may cause issues"
+msgstr "Sukha is the default skin for Kodi, removing it may cause issues"
 
 msgctxt "#31000"
 msgid "Now playing"
