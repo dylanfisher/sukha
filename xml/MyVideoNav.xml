@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Main video library/navigation window. -->
 <!-- Usage: Hosts the Movies/TV browsing experience, includes the active video view, media menu, top/bottom bars, and background treatment. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">500</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<views>500</views>
 	<menucontrol>9000</menucontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="image">
 			<include>FullScreenDimensions</include>

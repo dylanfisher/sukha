@@ -2,38 +2,35 @@
 <!-- Purpose: Info wall view implementation. -->
 <!-- Usage: Provides the artwork grid plus additional metadata layout used in richer browsing screens. -->
 <includes>
+	<!-- Picture card used when InfoWall is rendering image library content.
+	     This is a simple framed thumbnail with one centered label underneath. -->
 	<include name="InfoWallPictureLayout">
 		<param name="focused">false</param>
 		<definition>
+			<!-- Focus highlight card, only shown for the selected item. -->
 			<control type="image">
-				<top>-10</top>
-				<width>376</width>
-				<height>380</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
-				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-			</control>
-			<control type="image">
-				<top>-14</top>
-				<left>-4</left>
+				<top>0</top>
+				<left>0</left>
 				<width>384</width>
 				<height>388</height>
-				<texture colordiffuse="button_focus">colors/grey.png</texture>
+				<texture colordiffuse="button_focus">colors/white.png</texture>
 				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 				<bordersize>20</bordersize>
 				<visible>$PARAM[focused]</visible>
 				<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 			</control>
+			<!-- Actual picture art/thumbnail. -->
 			<control type="image">
-				<left>20</left>
-				<top>10</top>
+				<left>0</left>
+				<top>0</top>
 				<width>336</width>
 				<height>300</height>
 				<texture border="2" background="true">$VAR[InfoWallThumbVar]</texture>
 				<aspectratio>keep</aspectratio>
 			</control>
+			<!-- Picture label beneath the thumbnail. -->
 			<control type="label">
-				<left>20</left>
+				<left>0</left>
 				<top>318</top>
 				<width>338</width>
 				<textoffsetx>20</textoffsetx>
@@ -45,6 +42,9 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Square music/add-on card used for albums, artists, and other square-art rows.
+	     This layout supports either a single centered label or an album-style
+	     title + artist split, plus the optional rating circle. -->
 	<include name="InfoWallMusicLayout">
 		<param name="fallback_image">DefaultFolder.png</param>
 		<param name="main_label">$INFO[ListItem.Artist]</param>
@@ -52,25 +52,19 @@
 		<param name="single_label">$INFO[ListItem.Label]</param>
 		<param name="focused">false</param>
 		<definition>
-			<control type="image">
-				<top>0</top>
-				<width>316</width>
-				<height>386</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
-				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-			</control>
+			<!-- Focus highlight card shown when the square tile is selected. -->
 			<control type="image">
 				<top>-4</top>
 				<left>-4</left>
 				<width>324</width>
 				<height>394</height>
-				<texture colordiffuse="button_focus">colors/grey.png</texture>
+				<texture colordiffuse="button_focus">colors/white.png</texture>
 				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 				<bordersize>20</bordersize>
 				<visible>$PARAM[focused]</visible>
 				<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 			</control>
+			<!-- Main square artwork surface. -->
 			<control type="image">
 				<left>0</left>
 				<top>0</top>
@@ -80,6 +74,7 @@
 				<aspectratio>keep</aspectratio>
 				<bordersize>20</bordersize>
 			</control>
+			<!-- Single-label mode used for non-album content. -->
 			<control type="textbox">
 				<left>28</left>
 				<top>289</top>
@@ -91,8 +86,10 @@
 				<label>$PARAM[single_label]</label>
 				<visible>!String.IsEqual(ListItem.DBType,album)</visible>
 			</control>
+			<!-- Two-line album mode: track/album title on top, artist below. -->
 			<control type="group">
 				<visible>String.IsEqual(ListItem.DBType,album)</visible>
+				<!-- Upper album/track label. -->
 				<control type="label">
 					<left>29</left>
 					<top>300</top>
@@ -103,6 +100,7 @@
 					<scroll>$PARAM[focused]</scroll>
 					<align>center</align>
 				</control>
+				<!-- Lower artist label. -->
 				<control type="label">
 					<left>29</left>
 					<top>328</top>
@@ -114,6 +112,7 @@
 					<align>center</align>
 				</control>
 			</control>
+			<!-- Optional rating circle anchored over the top-right of the card. -->
 			<control type="group">
 				<left>133</left>
 				<top>2</top>
@@ -121,6 +120,9 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Horizontal episode/video card used by InfoWall when content is episodes,
+	     generic videos, or music videos in thumb mode.
+	     Current styling is: image on top, metadata below, minimal progress line. -->
 	<include name="InfoWallEpisodeLayout">
 		<param name="main_label">$INFO[ListItem.Title]</param>
 		<param name="sub_label">$INFO[ListItem.TVShowTitle]</param>
@@ -128,103 +130,60 @@
 		<param name="fallback_image">DefaultTVShows.png</param>
 		<param name="focused">false</param>
 		<definition>
+			<!-- Focus highlight card, slightly larger than the base card. -->
 			<control type="image">
-				<top>10</top>
-				<width>316</width>
-				<height>288</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
-				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-			</control>
-			<control type="image">
-				<top>6</top>
-				<left>-4</left>
-				<width>324</width>
-				<height>296</height>
-				<texture colordiffuse="button_focus">colors/grey.png</texture>
+				<top>8</top>
+				<left>13</left>
+				<width>294</width>
+				<height>167</height>
+				<texture colordiffuse="button_focus">colors/white.png</texture>
 				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 				<bordersize>20</bordersize>
 				<visible>$PARAM[focused]</visible>
 				<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 			</control>
+			<!-- Episode/video thumbnail image. -->
 			<control type="image">
-				<left>0</left>
+				<left>15</left>
 				<top>10</top>
-				<width>316</width>
-				<height>218</height>
+				<width>290</width>
+				<height>163</height>
 				<texture fallback="$PARAM[fallback_image]" background="true">$VAR[InfoWallThumbVar]</texture>
 				<aspectratio>scale</aspectratio>
 				<bordersize>20</bordersize>
 			</control>
-			<control type="image">
-				<left>20</left>
-				<top>138</top>
-				<width>276</width>
-				<height>70</height>
-				<texture>overlays/overlayfade.png</texture>
-				<visible>!ListItem.IsParentFolder</visible>
-			</control>
-			<control type="label">
-				<left>30</left>
-				<top>178</top>
-				<width>220</width>
-				<label>$PARAM[thumb_label]</label>
-				<font>font20_title</font>
-				<shadowcolor>text_shadow</shadowcolor>
-				<align>left</align>
-			</control>
-			<control type="image">		
-				<left>260</left>
-				<top>175</top>
-				<width>32</width>
-				<height>32</height>
-				<align>right</align>
-				<texture>$VAR[ItemStatusIconVar]</texture>
-			</control>
-			<control type="textbox">
-				<left>28</left>
-				<top>202</top>
-				<width>262</width>
-				<height>80</height>
-				<font>font12</font>
-				<align>center</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<visible>Window.IsActive(videos)</visible>
-			</control>
-			<control type="group">
-				<visible>!Window.IsActive(videos)</visible>
-				<control type="label">
-					<left>29</left>
-					<top>210</top>
-					<width>260</width>
-					<label>$PARAM[sub_label]</label>
-					<font>font12</font>
-					<shadowcolor>text_shadow</shadowcolor>
-					<scroll>$PARAM[focused]</scroll>
-					<align>center</align>
-				</control>
-				<control type="label">
-					<left>29</left>
-					<top>240</top>
-					<width>260</width>
-					<label>$PARAM[main_label]</label>
-					<font>font10</font>
-					<shadowcolor>text_shadow</shadowcolor>
-					<scroll>$PARAM[focused]</scroll>
-					<align>center</align>
-				</control>
-			</control>
+			<!-- Watched/unwatched badge pinned to the image's top-right corner. -->
+			<include content="PosterWatchedBadge">
+				<param name="left" value="263" />
+				<param name="top" value="29" />
+				<param name="size" value="22" />
+			</include>
+			<!-- Shared under-card metadata block:
+			     title on line 1, year/date detail on line 2. -->
+			<include content="PosterMetaBlock">
+				<param name="left" value="36" />
+				<param name="top" value="161" />
+				<param name="width" value="266" />
+				<param name="title_height" value="24" />
+				<param name="detail_top" value="177" />
+				<param name="detail_height" value="18" />
+				<param name="title_label" value="$PARAM[main_label]" />
+				<param name="detail_label" value="$INFO[ListItem.Premiered]" />
+				<param name="detail_label_compact" value="$INFO[ListItem.Premiered]" />
+				<param name="compact_for_tvshows" value="false" />
+			</include>
+			<!-- Slim progress indicator for partially watched episodes/videos. -->
 			<control type="progress">
-				<left>20</left>
-				<top>258</top>
-				<width>276</width>
+				<left>35</left>
+				<top>243</top>
+				<width>250</width>
 				<height>1</height>
 				<texturebg></texturebg>
 				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
 				<info>ListItem.PercentPlayed</info>
 				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
 			</control>
+			<!-- Optional rating circle overlay. -->
 			<control type="group">
 				<left>134</left>
 				<top>8</top>
@@ -232,30 +191,28 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Vertical movie/TV poster card used by InfoWall for movies, sets, shows,
+	     seasons, and poster-style music videos.
+	     This layout changes behavior depending on whether a real poster art image exists. -->
 	<include name="InfoWallMovieLayout">
 		<param name="focused">false</param>
 		<definition>
+			<!-- Fallback branch used when no poster art exists and the tile must rely on
+			     the generic icon plus a larger centered title. -->
 			<control type="group">
 				<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+				<!-- Focus highlight for the fallback branch. -->
 				<control type="image">
 					<left>15</left>
 					<top>-10</top>
 					<width>290</width>
 					<height>415</height>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
-					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-				</control>
-				<control type="image">
-					<left>15</left>
-					<top>-10</top>
-					<width>290</width>
-					<height>415</height>
-					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<texture colordiffuse="button_focus">colors/white.png</texture>
 					<bordersize>20</bordersize>
 					<visible>$PARAM[focused]</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
+				<!-- Large centered fallback title when no poster exists. -->
 				<control type="textbox">
 					<left>40</left>
 					<top>244</top>
@@ -268,6 +225,7 @@
 					<autoscroll time="2000" delay="3000" repeat="5000">$PARAM[focused]</autoscroll>
 					<visible>!ListItem.IsParentFolder</visible>
 				</control>
+				<!-- Generic icon art fallback. -->
 				<control type="image">
 					<left>24</left>
 					<top>-1</top>
@@ -278,19 +236,22 @@
 					<bordersize>20</bordersize>
 				</control>
 			</control>
+			<!-- Main poster-art branch used when ListItem.Art(poster) exists. -->
 			<control type="group">
 				<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
+				<!-- Focus highlight card for poster content. -->
 				<control type="image">
 					<left>11</left>
 					<top>-14</top>
 					<width>298</width>
 					<height>423</height>
-					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<texture colordiffuse="button_focus">colors/white.png</texture>
 					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 					<visible>$PARAM[focused]</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
+				<!-- Actual poster art. -->
 				<control type="image">
 					<left>15</left>
 					<top>-10</top>
@@ -301,17 +262,20 @@
 					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>
+				<!-- Watched/unwatched badge for poster cards. -->
 				<include content="PosterWatchedBadge">
 					<param name="left" value="269" />
 					<param name="top" value="2" />
 					<param name="size" value="28" />
 				</include>
 			</control>
+			<!-- Optional rating circle floating over the poster card. -->
 			<control type="group">
 				<left>135</left>
 				<top>-8</top>
 				<include condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">RatingCircle</include>
 			</control>
+			<!-- Minimal played-progress line at the bottom of the poster card. -->
 			<control type="progress">
 				<left>35</left>
 				<top>365</top>
@@ -324,14 +288,19 @@
 			</control>
 		</definition>
 	</include>
+	<!-- View registration for Kodi view id 54.
+	     This switches between the poster, episode, music, and picture layouts above
+	     depending on the active container content type. -->
 	<include name="View_54_InfoWall">
 		<control type="group">
+			<!-- View open/close and visibility behavior for the whole InfoWall region. -->
 			<include>OpenClose_Right</include>
 			<left>100</left>
 			<top>0</top>
 			<visible>Control.IsVisible(54)</visible>
 			<include>Visible_Right</include>
 			<control type="panel" id="54">
+				<!-- Main panel geometry and directional navigation for the InfoWall view. -->
 				<left>490</left>
 				<top>0</top>
 				<right>15</right>
@@ -346,6 +315,7 @@
 				<pagecontrol>531</pagecontrol>
 				<scrolltime tween="cubic" easing="out">500</scrolltime>
 				<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(sets) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(images) | Container.Content(videos) | Container.Content(games) | $EXP[videoasset_true]</visible>
+				<!-- Poster-style cards for movies, sets, shows, seasons, and poster music videos. -->
 				<itemlayout height="445" width="320" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | $EXP[videoasset_true] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<left>30</left>
@@ -353,6 +323,7 @@
 						<include>InfoWallMovieLayout</include>
 					</control>
 				</itemlayout>
+				<!-- Focused poster-style cards. -->
 				<focusedlayout height="445" width="320" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | $EXP[videoasset_true] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
@@ -363,9 +334,10 @@
 						</include>
 					</control>
 				</focusedlayout>
-				<itemlayout height="301" width="300" condition="Container.Content(episodes) | Container.Content(videos) | [Container.Content(musicvideos) + !Skin.HasSetting(show_musicvideoposter)]">
+				<!-- Horizontal episode/video cards. -->
+				<itemlayout height="301" width="320" condition="Container.Content(episodes) | Container.Content(videos) | [Container.Content(musicvideos) + !Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
-						<left>64</left>
+						<left>30</left>
 						<top>110</top>
 						<include content="InfoWallEpisodeLayout">
 							<param name="focused" value="false" />
@@ -373,10 +345,11 @@
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout height="301" width="300" condition="Container.Content(episodes) | Container.Content(videos) | [Container.Content(musicvideos) + !Skin.HasSetting(show_musicvideoposter)]">
+				<!-- Focused horizontal episode/video cards. -->
+				<focusedlayout height="301" width="320" condition="Container.Content(episodes) | Container.Content(videos) | [Container.Content(musicvideos) + !Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<left>64</left>
+						<left>30</left>
 						<top>110</top>
 						<include content="InfoWallEpisodeLayout">
 							<param name="focused" value="true" />
@@ -384,6 +357,7 @@
 						</include>
 					</control>
 				</focusedlayout>
+				<!-- Square artwork cards for artists and albums. -->
 				<itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
 					<control type="group">
 						<top>150</top>
@@ -391,6 +365,7 @@
 						<include>InfoWallMusicLayout</include>
 					</control>
 				</itemlayout>
+				<!-- Focused square artwork cards. -->
 				<focusedlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
@@ -401,6 +376,7 @@
 						</include>
 					</control>
 				</focusedlayout>
+				<!-- Picture cards used for image libraries. -->
 				<itemlayout height="401" width="378" condition="Container.Content(images)">
 					<control type="group">
 						<left>0</left>
@@ -408,6 +384,7 @@
 						<include>InfoWallPictureLayout</include>
 					</control>
 				</itemlayout>
+				<!-- Focused picture cards. -->
 				<focusedlayout height="401" width="378" condition="Container.Content(images)">
 					<control type="group">
 						<depth>DepthContentPopout</depth>

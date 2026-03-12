@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Custom search dialog. -->
 <!-- Usage: Provides the skin's reusable search UI for media and add-on search flows. -->
+<!-- Main window/dialog definition for id 1107 -->
 <window type="dialog" id="1107">
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<centerleft>50%</centerleft>

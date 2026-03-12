@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Custom text viewer dialog. -->
 <!-- Usage: Displays longer text content such as logs, descriptions, or generated text in a themed viewer. -->
+<!-- Main window/dialog definition for id 1102 -->
 <window type="dialog" id="1102">
 	<defaultcontrol always="true">1000</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<left>13%</left>

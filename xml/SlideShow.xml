@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Skin XML for SlideShow. -->
 <!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
+<!-- Main window/dialog definition. -->
 <window>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include condition="Skin.HasSetting(touchmode)">TouchBackSlideshowButton</include>
 		<control type="image">

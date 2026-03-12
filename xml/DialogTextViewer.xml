@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Modal dialog for DialogTextViewer. -->
 <!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">1000</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<left>13%</left>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Custom fanart display window. -->
 <!-- Usage: Used when the skin needs a dedicated fanart-focused presentation layer. -->
+<!-- Main window/dialog definition for id 1104 -->
 <window type="dialog" id="1104">
 	<defaultcontrol always="true">3000</defaultcontrol>
 	<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
 	<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="image">
 			<include>FullScreenDimensions</include>

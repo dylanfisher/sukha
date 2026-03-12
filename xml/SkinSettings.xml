@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Skin-specific settings window. -->
 <!-- Usage: Exposes Sukha/Estuary-style theme settings, toggles, and customization controls. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<onload condition="String.IsEmpty(Skin.String(background_overlay))">Skin.SetString(background_overlay,0)</onload>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group" id="10000">
@@ -197,34 +199,6 @@
 					<onclick>SetProperty(settingsdialog_content,musicvideowidgets,home)</onclick>
 					<onclick>ActivateWindow(1101)</onclick>
 					<enable>!Skin.HasSetting(HomeMenuNoMusicVideoButton)</enable>
-				</control>
-				<control type="radiobutton" id="618">
-					<label>$LOCALIZE[19020]</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(HomeMenuNoTVButton)</selected>
-					<onclick>Skin.ToggleSetting(HomeMenuNoTVButton)</onclick>
-				</control>
-				<control type="button" id="6181">
-					<label>- $LOCALIZE[31040]</label>
-					<include>DefaultSettingButton</include>
-					<onclick>SetProperty(settingsdialog_header,$LOCALIZE[31040] - $LOCALIZE[19020],home)</onclick>
-					<onclick>SetProperty(settingsdialog_content,tvwidgets,home)</onclick>
-					<onclick>ActivateWindow(1101)</onclick>
-					<enable>!Skin.HasSetting(HomeMenuNoTVButton)</enable>
-				</control>
-				<control type="radiobutton" id="619">
-					<label>$LOCALIZE[19021]</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(HomeMenuNoRadioButton)</selected>
-					<onclick>Skin.ToggleSetting(HomeMenuNoRadioButton)</onclick>
-				</control>
-				<control type="button" id="6190">
-					<label>- $LOCALIZE[31040]</label>
-					<include>DefaultSettingButton</include>
-					<onclick>SetProperty(settingsdialog_header,$LOCALIZE[31040] - $LOCALIZE[19021],home)</onclick>
-					<onclick>SetProperty(settingsdialog_content,radiowidgets,home)</onclick>
-					<onclick>ActivateWindow(1101)</onclick>
-					<enable>!Skin.HasSetting(HomeMenuNoRadioButton)</enable>
 				</control>
 				<control type="radiobutton" id="614">
 					<label>$LOCALIZE[24001]</label>

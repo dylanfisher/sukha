@@ -2,6 +2,8 @@
 <!-- Purpose: Shared home-screen includes. -->
 <!-- Usage: Contains reusable rows, widgets, buttons, and helpers used by the home window. -->
 <includes>
+	<!-- Shared vertical grouplist behavior for each Home section's stack of widget rows.
+	     This is the main place to adjust spacing between one widget row and the next. -->
 	<include name="WidgetGroupListCommon">
 		<orientation>vertical</orientation>
 		<height>100%</height>
@@ -11,10 +13,13 @@
 		<ondown>20001</ondown>
 		<usecontrolcoords>true</usecontrolcoords>
 	</include>
+	<!-- Standard section header label used above each widget row, such as
+	     "In progress movies", "Recently added episodes", or "Genres". -->
 	<include name="CategoryLabel">
 		<param name="visible">true</param>
 		<param name="item_treshold">0</param>
 		<definition>
+			<!-- Section heading label displayed above a Home widget row. -->
 			<control type="label" id="$PARAM[list_id]666">
 				<left>0</left>
 				<top>10</top>
@@ -27,18 +32,30 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Compact poster-row widget used by Home for movie and TV poster strips.
+	     This is the closest Home equivalent to View_500_Wall sizing.
+	     Main controls to tune:
+	       - panel top/height for row placement
+	       - itemlayout/focusedlayout width+height for per-item footprint
+	       - internal poster size and badge/meta placement -->
 	<include name="WidgetListPoster">
 		<param name="onclick_condition">false</param>
 		<param name="browse_mode">auto</param>
+		<param name="detail_label">$INFO[ListItem.Year] - $INFO[ListItem.Director]</param>
+		<param name="detail_label_compact">$INFO[ListItem.Year]</param>
+		<param name="compact_for_tvshows">true</param>
 		<definition>
+			<!-- Row heading for the poster strip. -->
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
 				<param name="list_id" value="$PARAM[list_id]"/>
 			</include>
+			<!-- Loading spinner while the poster strip is still populating. -->
 			<include content="BusyListSpinner">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="posy" value="250"/>
 			</include>
+			<!-- Main horizontal poster panel for the widget row. -->
 			<control type="panel" id="$PARAM[list_id]">
 				<left>0</left>
 				<top>115</top>
@@ -46,12 +63,16 @@
 				<right>0</right>
 				<height>480</height>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
+				<!-- Shared panel navigation/scroll behavior. -->
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
+				<!-- Unfocused poster card footprint used in Home rows. -->
 				<itemlayout width="188" height="326">
+					<!-- Wrapper group for one poster card. -->
 					<control type="group">
 						<top>18</top>
+						<!-- Poster artwork image. -->
 						<control type="image">
 							<left>4</left>
 							<top>0</top>
@@ -60,18 +81,27 @@
 							<texture fallback="DefaultMovies.png" background="true">$VAR[PosterThumbVar]</texture>
 							<aspectratio>scale</aspectratio>
 						</control>
+						<!-- Watched/unwatched corner badge. -->
 						<include content="PosterWatchedBadge">
 							<param name="left" value="158" />
 							<param name="top" value="0" />
 							<param name="size" value="22" />
 						</include>
-						<include content="PosterMetaBlock" />
+						<!-- Shared title + detail metadata block below the poster. -->
+						<include content="PosterMetaBlock">
+							<param name="detail_label" value="$PARAM[detail_label]" />
+							<param name="detail_label_compact" value="$PARAM[detail_label_compact]" />
+							<param name="compact_for_tvshows" value="$PARAM[compact_for_tvshows]" />
+						</include>
 					</control>
 				</itemlayout>
+				<!-- Focused poster card footprint and focus treatment. -->
 				<focusedlayout width="188" height="326">
+					<!-- Wrapper group for the focused poster card. -->
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<top>18</top>
+						<!-- Focus highlight fill behind the poster. -->
 						<control type="image">
 							<left>2</left>
 							<top>-2</top>
@@ -80,6 +110,7 @@
 							<texture colordiffuse="button_focus">colors/white.png</texture>
 							<include>Animation_FocusTextureFade</include>
 						</control>
+						<!-- Poster artwork image for the focused item. -->
 						<control type="image">
 							<left>4</left>
 							<top>0</top>
@@ -88,18 +119,27 @@
 							<texture fallback="DefaultMovies.png" background="true">$VAR[PosterThumbVar]</texture>
 							<aspectratio>scale</aspectratio>
 						</control>
+						<!-- Watched/unwatched corner badge for the focused item. -->
 						<include content="PosterWatchedBadge">
 							<param name="left" value="158" />
 							<param name="top" value="0" />
 							<param name="size" value="22" />
 						</include>
-						<include content="PosterMetaBlock" />
+						<!-- Shared title + detail metadata block below the poster. -->
+						<include content="PosterMetaBlock">
+							<param name="detail_label" value="$PARAM[detail_label]" />
+							<param name="detail_label_compact" value="$PARAM[detail_label_compact]" />
+							<param name="compact_for_tvshows" value="$PARAM[compact_for_tvshows]" />
+						</include>
 					</control>
 				</focusedlayout>
+				<!-- Data source for this poster row. -->
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
 			</control>
 		</definition>
 	</include>
+	<!-- Fallback empty-state widget shown when a section has no library content.
+	     Used for buttons like "Browse for media" and similar setup prompts. -->
 	<include name="ImageWidget">
 		<param name="visible">true</param>
 		<param name="visible_1">true</param>
@@ -108,8 +148,10 @@
 		<param name="button2_label">$LOCALIZE[31116]</param>
 		<param name="button2_onclick">true</param>
 		<definition>
+			<!-- Outer wrapper for the empty-state content block. -->
 			<control type="group" id="$PARAM[button_id]889">
 				<visible>$PARAM[visible]</visible>
+				<!-- Vertical stack containing the helper text and one or more buttons. -->
 				<control type="grouplist" id="$PARAM[button_id]577">
 					<orientation>vertical</orientation>
 					<top>0</top>
@@ -117,6 +159,7 @@
 					<left>50</left>
 					<right>50</right>
 					<align>center</align>
+					<!-- Empty-state descriptive text. -->
 					<control type="textbox">
 						<width>100%</width>
 						<height min="0" max="300">auto</height>
@@ -124,6 +167,7 @@
 						<align>center</align>
 						<font>font14</font>
 					</control>
+					<!-- Horizontal button row used for browse/install/setup actions. -->
 					<control type="grouplist" id="$PARAM[button_id]567">
 						<width>100%</width>
 						<onup>9000</onup>
@@ -131,6 +175,7 @@
 						<orientation>horizontal</orientation>
 						<align>center</align>
 						<onleft>9000</onleft>
+						<!-- Primary empty-state action button. -->
 						<control type="button" id="$PARAM[button_id]">
 							<width>auto</width>
 							<height>110</height>
@@ -142,6 +187,7 @@
 							<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
 							<visible>$PARAM[visible_1]</visible>
 						</control>
+						<!-- Secondary empty-state action button. -->
 						<control type="button" id="$PARAM[button_id]568">
 							<width>auto</width>
 							<height>110</height>
@@ -154,6 +200,7 @@
 							<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
 							<visible>$PARAM[visible_2]</visible>
 						</control>
+						<!-- Optional third action button. -->
 						<control type="button" id="$PARAM[button_id]569">
 							<width>auto</width>
 							<height>110</height>
@@ -171,6 +218,9 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Episode-strip widget used mainly on the TV Home section for
+	     rows like "Recently added episodes".
+	     Uses InfoWallEpisodeLayout from View_54_InfoWall.xml. -->
 	<include name="WidgetListEpisodes">
 		<param name="main_label">$INFO[ListItem.Title]</param>
 		<param name="sub_label">$INFO[ListItem.TVShowTitle]</param>
@@ -181,28 +231,35 @@
 		<param name="widget_limit">15</param>
 		<param name="browse_mode">auto</param>
 		<definition>
+			<!-- Row heading for the episode strip. -->
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
 				<param name="list_id" value="$PARAM[list_id]"/>
 			</include>
+			<!-- Loading spinner while episode items are still being populated. -->
 			<include content="BusyListSpinner">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="posy" value="200"/>
 			</include>
+			<!-- Main horizontal panel for episode/video cards. -->
 			<control type="panel" id="$PARAM[list_id]">
 				<left>0</left>
 				<top>105</top>
 				<right>0</right>
-				<height>410</height>
+				<height>360</height>
+				<!-- Shared panel navigation/scroll behavior. -->
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
 				<visible>$PARAM[visible]</visible>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<itemlayout width="310" height="500">
+				<!-- Unfocused episode card item. -->
+				<itemlayout width="262" height="280">
+					<!-- Wrapper group positioning the shared episode card layout. -->
 					<control type="group">
-						<left>70</left>
-						<top>5</top>
+						<left>-31</left>
+						<top>-2</top>
+						<!-- Shared horizontal episode card layout from View_54_InfoWall. -->
 						<include content="InfoWallEpisodeLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="sub_label" value="$PARAM[sub_label]" />
@@ -211,11 +268,14 @@
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="310" height="500">
+				<!-- Focused episode card item. -->
+				<focusedlayout width="262" height="280">
+					<!-- Wrapper group positioning the focused shared episode card layout. -->
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<left>70</left>
-						<top>5</top>
+						<left>-31</left>
+						<top>-2</top>
+						<!-- Focused horizontal episode card layout from View_54_InfoWall. -->
 						<include content="InfoWallEpisodeLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="sub_label" value="$PARAM[sub_label]" />
@@ -224,10 +284,13 @@
 						</include>
 					</control>
 				</focusedlayout>
+				<!-- Data source for this episode row. -->
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[widget_limit]" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
 			</control>
 		</definition>
 	</include>
+	<!-- Square artwork widget used by music/add-ons and other non-poster rows.
+	     Uses InfoWallMusicLayout for the actual tile content. -->
 	<include name="WidgetListSquare">
 		<param name="sub_label">$INFO[ListItem.Label]</param>
 		<param name="sortby"></param>
@@ -238,30 +301,36 @@
 		<param name="onclick_condition">false</param>
 		<param name="browse_mode">auto</param>
 		<definition>
+			<!-- Row heading for the square-art widget strip. -->
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="$PARAM[visible]"/>
 			</include>
+			<!-- Loading spinner while square-art items are being populated. -->
 			<include content="BusyListSpinner">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="posy" value="220"/>
 				<param name="visible" value="$PARAM[visible]"/>
 			</include>
+			<!-- Main horizontal panel for square artwork rows. -->
 			<control type="panel" id="$PARAM[list_id]">
 				<left>0</left>
 				<top>120</top>
 				<right>0</right>
 				<height>500</height>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
+				<!-- Shared panel navigation/scroll behavior. -->
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
 				<visible>$PARAM[visible]</visible>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+				<!-- Unfocused square-art item. -->
 				<itemlayout width="310" height="500">
+					<!-- Wrapper group for one square-art card. -->
 					<control type="group">
-						<left>70</left>
+						<!-- Shared square-art card layout from View_54_InfoWall. -->
 						<include content="InfoWallMusicLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="single_label" value="$PARAM[single_label]" />
@@ -270,10 +339,12 @@
 						</include>
 					</control>
 				</itemlayout>
+				<!-- Focused square-art item. -->
 				<focusedlayout width="310" height="500">
+					<!-- Wrapper group for the focused square-art card. -->
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<left>70</left>
+						<!-- Focused shared square-art card layout from View_54_InfoWall. -->
 						<include content="InfoWallMusicLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="single_label" value="$PARAM[single_label]" />
@@ -282,122 +353,24 @@
 						</include>
 					</control>
 				</focusedlayout>
+				<!-- Data source for this square-art row. -->
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[widget_limit]" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
 			</control>
 		</definition>
 	</include>
-	<include name="WidgetListCategories">
-		<param name="item_limit">20</param>
-		<param name="icon">$INFO[ListItem.Icon]</param>
-		<param name="icon_height">120</param>
-		<param name="additional_movie_items">false</param>
-		<param name="additional_tvshow_items">false</param>
-		<param name="visible">true</param>
-		<param name="browse">auto</param>
-		<definition>
-			<include content="CategoryLabel">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="visible" value="$PARAM[visible]"/>
-			</include>
-			<include content="BusyListSpinner">
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="visible" value="$PARAM[visible]"/>
-			</include>
-			<control type="panel" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>110</top>
-				<right>0</right>
-				<height>290</height>
-				<include content="WidgetListCommon">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<visible>$PARAM[visible]</visible>
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<itemlayout width="310" height="340">
-					<control type="group">
-						<left>70</left>
-						<control type="image">
-							<width>316</width>
-							<height>200</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-							<bordersize>20</bordersize>
-						</control>
-						<control type="image">
-							<centertop>74</centertop>
-							<left>58</left>
-							<width>200</width>
-							<height>$PARAM[icon_height]</height>
-							<texture fallback="DefaultFolder.png">$PARAM[icon]</texture>
-							<aspectratio>keep</aspectratio>
-						</control>
-						<control type="textbox">
-							<left>38</left>
-							<top>106</top>
-							<width>240</width>
-							<height>70</height>
-							<label>$INFO[ListItem.Label]</label>
-							<font>font25_narrow</font>
-							<shadowcolor>text_shadow</shadowcolor>
-							<align>center</align>
-							<aligny>center</aligny>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout width="310" height="340">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>70</left>
-						<control type="image">
-							<width>316</width>
-							<height>200</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-							<bordersize>20</bordersize>
-						</control>
-						<control type="image">
-							<width>316</width>
-							<height>200</height>
-							<texture colordiffuse="button_focus">colors/grey.png</texture>
-							<bordersize>20</bordersize>
-							<include>Animation_FocusTextureFade</include>
-						</control>
-						<control type="image">
-							<centertop>74</centertop>
-							<left>58</left>
-							<width>200</width>
-							<height>$PARAM[icon_height]</height>
-							<texture fallback="DefaultFolder.png">$PARAM[icon]</texture>
-							<aspectratio>keep</aspectratio>
-						</control>
-						<control type="textbox">
-							<left>38</left>
-							<top>106</top>
-							<width>240</width>
-							<height>70</height>
-							<label>$INFO[ListItem.Label]</label>
-							<font>font25_narrow</font>
-							<shadowcolor>text_shadow</shadowcolor>
-							<align>center</align>
-							<aligny>center</aligny>
-						</control>
-					</control>
-				</focusedlayout>
-				<include condition="$PARAM[additional_movie_items]" content="MovieSubmenuItems" />
-				<include condition="$PARAM[additional_tvshow_items]" content="TVShowSubmenuItems" />
-				<content target="$PARAM[widget_target]" limit="$PARAM[item_limit]" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
+
+	<!-- Optional extra items appended to movie category rows when Embuary is available. -->
 	<include name="MovieSubmenuItems">
+		<!-- Synthetic content items appended to movie category rows. -->
 		<content>
+			<!-- "Now playing" movie shortcut from Embuary, when available. -->
 			<item>
 				<label>$LOCALIZE[31146]</label>
 				<onclick>ActivateWindow(videos,plugin://script.embuary.info/movie/now_playing,return)</onclick>
 				<thumb>DefaultStudios.png</thumb>
 				<visible>System.AddonIsEnabled(script.embuary.info)</visible>
 			</item>
+			<!-- "Upcoming" movie shortcut from Embuary, when available. -->
 			<item>
 				<label>$LOCALIZE[31147]</label>
 				<onclick>ActivateWindow(videos,plugin://script.embuary.info/movie/upcoming,return)</onclick>
@@ -406,8 +379,11 @@
 			</item>
 		</content>
 	</include>
+	<!-- Optional extra TV-specific category item appended when Embuary is available. -->
 	<include name="TVShowSubmenuItems">
+		<!-- Synthetic content item appended to TV category rows. -->
 		<content>
+			<!-- "Next aired" TV shortcut from Embuary, when available. -->
 			<item>
 				<label>$LOCALIZE[31027]</label>
 				<onclick>ActivateWindow(videos,plugin://script.embuary.info/nextaired,return)</onclick>
@@ -416,232 +392,40 @@
 			</item>
 		</content>
 	</include>
-	<include name="WidgetListPVR">
-		<param name="item_treshold">0</param>
-		<param name="icon">$INFO[ListItem.Icon]</param>
-		<param name="label">$INFO[ListItem.Label]</param>
-		<param name="label2">$INFO[ListItem.Title]</param>
-		<param name="info_update">0</param>
-		<param name="browse_mode">auto</param>
-		<definition>
-			<include content="CategoryLabel">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="item_treshold" value="$PARAM[item_treshold]"/>
-			</include>
-			<include content="BusyListSpinner">
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="posy" value="200"/>
-			</include>
-			<control type="panel" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>120</top>
-				<right>0</right>
-				<height>430</height>
-				<include content="WidgetListCommon">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,$PARAM[item_treshold]) | [Container($PARAM[list_id]).IsUpdating + Integer.IsEqual(Container($PARAM[list_id]).NumItems,0)]</visible>
-				<itemlayout width="310" height="500" infoupdate="$PARAM[info_update]">
-					<control type="group">
-						<left>70</left>
-						<control type="image">
-							<width>319</width>
-							<height>340</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-							<bordersize>20</bordersize>
-						</control>
-						<control type="image">
-							<top>43</top>
-							<left>38</left>
-							<width>245</width>
-							<height>190</height>
-							<texture fallback="DefaultTVShows.png">$PARAM[icon]</texture>
-							<aspectratio>keep</aspectratio>
-						</control>
-						<control type="group">
-							<visible>!String.IsEqual(ListItem.Property(node.type),target_folder)</visible>
-							<control type="label">
-								<left>42</left>
-								<top>247</top>
-								<width>245</width>
-								<height>70</height>
-								<label>$PARAM[label]</label>
-								<font>font12</font>
-								<shadowcolor>text_shadow</shadowcolor>
-								<align>center</align>
-								<aligny>top</aligny>
-							</control>
-							<control type="label">
-								<left>42</left>
-								<top>277</top>
-								<width>245</width>
-								<height>65</height>
-								<label>$PARAM[label2]</label>
-								<font>font12</font>
-								<shadowcolor>text_shadow</shadowcolor>
-								<align>center</align>
-								<aligny>top</aligny>
-							</control>
-						</control>
-						<control type="label">
-							<left>42</left>
-							<top>247</top>
-							<width>245</width>
-							<height>70</height>
-							<visible>String.IsEqual(ListItem.Property(node.type),target_folder)</visible>
-							<label>$INFO[ListItem.Label]</label>
-							<font>font12</font>
-							<shadowcolor>text_shadow</shadowcolor>
-							<align>center</align>
-							<aligny>top</aligny>
-						</control>
-						<include content="PosterWatchedBadge">
-							<param name="left" value="253" />
-							<param name="top" value="55" />
-							<param name="size" value="22" />
-						</include>
-						<control type="progress">
-							<left>20</left>
-							<top>300</top>
-							<width>280</width>
-							<height>1</height>
-							<texturebg></texturebg>
-							<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
-							<info>ListItem.PercentPlayed</info>
-							<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
-						</control>
-						<control type="progress">
-							<left>20</left>
-							<top>300</top>
-							<width>280</width>
-							<height>1</height>
-							<texturebg></texturebg>
-							<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
-							<info>ListItem.Progress</info>
-							<visible>!Integer.IsEqual(ListItem.Progress,0)</visible>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout width="310" height="500" infoupdate="$PARAM[info_update]">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>70</left>
-<control type="image">
-							<width>319</width>
-							<height>340</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-							<bordersize>20</bordersize>
-						</control>
-						<control type="image">
-							<width>319</width>
-							<height>340</height>
-							<texture colordiffuse="button_focus">colors/grey.png</texture>
-							<bordersize>20</bordersize>
-							<include>Animation_FocusTextureFade</include>
-						</control>
-						<control type="image">
-							<top>43</top>
-							<left>38</left>
-							<width>245</width>
-							<height>190</height>
-							<texture fallback="DefaultTVShows.png">$PARAM[icon]</texture>
-							<aspectratio>keep</aspectratio>
-						</control>
-						<control type="group">
-							<visible>!String.IsEqual(ListItem.Property(node.type),target_folder)</visible>
-							<control type="label">
-								<left>42</left>
-								<top>247</top>
-								<width>245</width>
-								<height>70</height>
-								<label>$PARAM[label]</label>
-								<font>font12</font>
-								<shadowcolor>text_shadow</shadowcolor>
-								<align>center</align>
-								<scroll>true</scroll>
-								<aligny>top</aligny>
-							</control>
-							<control type="label">
-								<left>42</left>
-								<top>277</top>
-								<width>245</width>
-								<height>65</height>
-								<label>$PARAM[label2]</label>
-								<font>font12</font>
-								<shadowcolor>text_shadow</shadowcolor>
-								<align>center</align>
-								<scroll>true</scroll>
-								<aligny>top</aligny>
-							</control>
-						</control>
-						<control type="label">
-							<left>42</left>
-							<top>247</top>
-							<width>245</width>
-							<height>70</height>
-							<visible>String.IsEqual(ListItem.Property(node.type),target_folder)</visible>
-							<label>$INFO[ListItem.Label]</label>
-							<font>font12</font>
-							<shadowcolor>text_shadow</shadowcolor>
-							<align>center</align>
-							<scroll>true</scroll>
-							<aligny>top</aligny>
-						</control>
-						<include content="PosterWatchedBadge">
-							<param name="left" value="253" />
-							<param name="top" value="55" />
-							<param name="size" value="22" />
-						</include>
-						<control type="progress">
-							<left>20</left>
-							<top>300</top>
-							<width>280</width>
-							<height>1</height>
-							<texturebg></texturebg>
-							<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
-							<info>ListItem.PercentPlayed</info>
-							<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
-						</control>
-						<control type="progress">
-							<left>20</left>
-							<top>300</top>
-							<width>280</width>
-							<height>1</height>
-							<texturebg></texturebg>
-							<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
-							<info>ListItem.Progress</info>
-							<visible>!Integer.IsEqual(ListItem.Progress,0)</visible>
-						</control>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
+	<!-- Common horizontal panel behavior shared by all Home widget panels.
+	     If a widget row is scrolling or remembering position oddly, start here. -->
 	<include name="WidgetListCommon">
+		<!-- Shared horizontal panel scroll timing. -->
 		<scrolltime tween="cubic" easing="out">500</scrolltime>
+		<!-- Horizontal row orientation. -->
 		<orientation>horizontal</orientation>
+		<!-- Return focus to the sidebar when moving left from a row. -->
 		<onleft>9000</onleft>
+		<!-- Prevent right-navigation from leaving the row. -->
 		<onright>noop</onright>
+		<!-- Remember the row position when leaving focus. -->
 		<onunfocus>SetProperty(listposition,$INFO[Container($PARAM[list_id]).Position],home)</onunfocus>
+		<!-- Restore the row's previous scroll position on focus. -->
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],$INFO[Window(home).Property(listposition)])</onfocus>
+		<!-- Back behavior: first jump to row start, then return to the sidebar. -->
 		<onback condition="!Container($PARAM[list_id]).Position(0)">SetFocus($PARAM[list_id],0,absolute)</onback>
 		<onback condition="Container($PARAM[list_id]).Position(0)">9000</onback>
+		<!-- Preload adjacent items for smoother row scrolling. -->
 		<preloaditems>2</preloaditems>
 	</include>
+	<!-- Loading spinner shown while a Home widget panel is still populating. -->
 	<include name="BusyListSpinner">
 		<param name="posy">160</param>
 		<param name="visible">true</param>
 		<definition>
+			<!-- Wrapper group for the loading spinner. -->
 			<control type="group" id="$PARAM[list_id]599">
 				<height>160</height>
 				<left>180</left>
 				<visible>Container($PARAM[list_id]).IsUpdating + !Integer.IsGreater(Container($PARAM[list_id]).NumItems,0)</visible>
 				<visible>$PARAM[visible]</visible>
+				<!-- Spinner background plate. -->
 				<control type="image">
 					<top>$PARAM[posy]</top>
 					<width>100</width>
@@ -649,6 +433,7 @@
 					<aspectratio aligny="center">keep</aspectratio>
 					<texture colordiffuse="black">dialogs/extendedprogress/loading-back.png</texture>
 				</control>
+				<!-- Rotating spinner foreground. -->
 				<control type="image">
 					<top>$PARAM[posy]</top>
 					<width>100</width>
@@ -660,12 +445,15 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Touch-mode vertical scrollbar helper for Home widget stacks. -->
 	<include name="WidgetScrollbar">
+		<!-- Wrapper group anchoring the touch scrollbar at the right edge. -->
 		<control type="group">
 			<right>0</right>
 			<top>80</top>
 			<bottom>80</bottom>
 			<width>60</width>
+			<!-- Actual vertical scrollbar control used in touch mode. -->
 			<control type="scrollbar" id="$PARAM[scrollbar_id]">
 				<right>0</right>
 				<top>0</top>

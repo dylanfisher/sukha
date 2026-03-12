@@ -2,6 +2,7 @@
 <!-- Purpose: Shared building blocks for select dialogs. -->
 <!-- Usage: Contains reusable layouts and controls used by selection/picker dialogs. -->
 <includes>
+	<!-- Reusable include: DefaultDialogSelectLayout. -->
 	<include name="DefaultDialogSelectLayout">
 		<control type="group">
 			<centertop>50%</centertop>
@@ -56,27 +57,6 @@
 						<height>110</height>
 						<texture>$VAR[InfoWallThumbVar]</texture>
 						<aspectratio>keep</aspectratio>
-						<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>27</left>
-						<top>22</top>
-						<width>80</width>
-						<height>80</height>
-						<aspectratio>keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/recording.png</texture>
-						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>27</left>
-						<top>22</top>
-						<width>80</width>
-						<height>80</height>
-						<aspectratio>keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/bell.png</texture>
-						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
 					</control>
 					<control type="gamecontroller">
 						<description>The animated controller image for game controllers in the select dialog</description>
@@ -124,27 +104,6 @@
 						<height>110</height>
 						<texture>$VAR[InfoWallThumbVar]</texture>
 						<aspectratio>keep</aspectratio>
-						<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>27</left>
-						<top>22</top>
-						<width>80</width>
-						<height>80</height>
-						<aspectratio>keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/recording.png</texture>
-						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>27</left>
-						<top>22</top>
-						<width>80</width>
-						<height>80</height>
-						<aspectratio>keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/bell.png</texture>
-						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
 					</control>
 					<control type="gamecontroller">
 						<left>12</left>
@@ -217,6 +176,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: VideoDialogSelectVideoLayout. -->
 	<include name="VideoDialogSelectVideoLayout">
 	<!--
 	Available ListItem video stream properties:
@@ -401,6 +361,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: VideoDialogSelectAudioLayout. -->
 	<include name="VideoDialogSelectAudioLayout">
 	<!--
 	Available ListItem audio stream properties:
@@ -583,6 +544,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: VideoDialogSelectSubtitleLayout. -->
 	<include name="VideoDialogSelectSubtitleLayout">
 	<!--
 	Available ListItem subtitle stream properties:
@@ -765,6 +727,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogSelectSaveLayout. -->
 	<include name="GameDialogSelectSaveLayout">
 		<control type="group">
 			<centertop>50%</centertop>
@@ -950,6 +913,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogSelectFilterLayout. -->
 	<include name="GameDialogSelectFilterLayout">
 		<control type="button">
 			<description>background close area</description>
@@ -1047,6 +1011,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogSelectViewLayout. -->
 	<include name="GameDialogSelectViewLayout">
 		<control type="button">
 			<description>background close area</description>
@@ -1142,6 +1107,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogSelectSaveInGameLayout. -->
 	<include name="GameDialogSelectSaveInGameLayout">
 		<control type="button">
 			<description>background close area</description>

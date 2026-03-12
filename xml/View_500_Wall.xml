@@ -2,6 +2,7 @@
 <!-- Purpose: Sukha's custom Wall view implementation. -->
 <!-- Usage: Provides the wall/grid layouts used by the video library when the wall view is active. -->
 <includes>
+	<!-- Reusable include: View_500_Wall. -->
 	<include name="View_500_Wall">
 		<control type="group">
 			<include>OpenClose_Right</include>

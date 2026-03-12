@@ -2,6 +2,7 @@
 <!-- Purpose: Standard list view implementation. -->
 <!-- Usage: Provides the shared list-style browsing layout used in many content areas. -->
 <includes>
+	<!-- Reusable include: View_50_List. -->
 	<include name="View_50_List">
 		<control type="group">
 			<include>OpenClose_Right</include>
@@ -40,6 +41,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: RightListPanel. -->
 	<include name="RightListPanel">
 		<control type="group">
 			<depth>DepthContentPanel</depth>
@@ -118,6 +120,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: ListContainer. -->
 	<include name="ListContainer">
 		<param name="left">0</param>
 		<param name="right">0</param>
@@ -223,6 +226,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: ListThumbInfoPanel. -->
 	<include name="ListThumbInfoPanel">
 		<param name="fallback_image"></param>
 		<param name="flip_bg">false</param>

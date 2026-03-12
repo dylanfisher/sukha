@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Custom volume slider overlay. -->
 <!-- Usage: Appears when volume is adjusted so playback volume changes can be shown without opening a full settings dialog. -->
+<!-- Main window/dialog definition for id 1103 -->
 <window type="dialog" id="1103">
 	<defaultcontrol>11</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
 	<depth>DepthOSD+</depth>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="button">
 			<description>background close area</description>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Startup/splash window. -->
 <!-- Usage: Handles the initial skin startup presentation before the normal windows take over. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(no_fanart)</onload>
 	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(hide_background_fanart)</onload>

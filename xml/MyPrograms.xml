@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Programs/add-ons navigation window. -->
 <!-- Usage: Displays program add-ons and related browsing UI in the main navigation context. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">52</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<views>50,52,55,500</views>
 	<menucontrol>9000</menucontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

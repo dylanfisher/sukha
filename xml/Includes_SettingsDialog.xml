@@ -2,9 +2,11 @@
 <!-- Purpose: Shared settings dialog includes. -->
 <!-- Usage: Provides reusable controls and layouts used by skin settings and modal settings dialogs. -->
 <includes>
+	<!-- Reusable include: SettingsDialogOSDVisible. -->
 	<include name="SettingsDialogOSDVisible">
 		<visible>!Window.IsActive(DialogSettings.xml) + !Window.IsActive(DialogSlider.xml) + !Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation)</visible>
 	</include>
+	<!-- Reusable include: SettingsDialogLayout. -->
 	<include name="SettingsDialogLayout">
 		<param name="height">700</param>
 		<param name="width">700</param>
@@ -41,13 +43,12 @@
 						<include condition="String.IsEqual(window(home).Property(settingsdialog_content),tvshowwidgets)">SettingsDialogTVShowWidgetsContent</include>
 						<include condition="String.IsEqual(window(home).Property(settingsdialog_content),musicwidgets)">SettingsDialogMusicWidgetsContent</include>
 						<include condition="String.IsEqual(window(home).Property(settingsdialog_content),musicvideowidgets)">SettingsDialogMusicVideoWidgetsContent</include>
-						<include condition="String.IsEqual(window(home).Property(settingsdialog_content),tvwidgets)">SettingsDialogTVWidgetsContent</include>
-						<include condition="String.IsEqual(window(home).Property(settingsdialog_content),radiowidgets)">SettingsDialogRadioWidgetsContent</include>
 					</control>
 				</control>
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: SettingsDialogStreamSelectionContent. -->
 	<include name="SettingsDialogStreamSelectionContent">
 		<control type="button" id="22106">
 			<include content="DialogSettingButton">
@@ -77,6 +78,7 @@
 			<enable>Integer.IsGreater(VideoPlayer.VideoStreamCount,1)</enable>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogVideoSettingsContent. -->
 	<include name="SettingsDialogVideoSettingsContent">
 		<control type="button" id="22101">
 			<include>DialogSettingButton</include>
@@ -125,6 +127,7 @@
 			<onclick>ActivateWindow(playerprocessinfo)</onclick>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialog3DContent. -->
 	<include name="SettingsDialog3DContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -147,6 +150,7 @@
 			<selected>Integer.IsEqual(System.StereoscopicMode,9)</selected>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogGameContent. -->
 	<include name="SettingsDialogGameContent">
 		<control type="button" id="22101">
 			<description>Video filter button</description>
@@ -192,6 +196,7 @@
 			<onclick>ActivateWindow(GameAdvancedSettings)</onclick>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogMusicSettingsContent. -->
 	<include name="SettingsDialogMusicSettingsContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -236,6 +241,7 @@
 			<visible>!String.IsEmpty(Skin.String(LyricScript_Path))</visible>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogMovieWidgetsContent. -->
 	<include name="SettingsDialogMovieWidgetsContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -289,6 +295,7 @@
 			<selected>!Skin.HasSetting(home_no_movies_sets_widget)</selected>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogTVShowWidgetsContent. -->
 	<include name="SettingsDialogTVShowWidgetsContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -336,6 +343,7 @@
 			<selected>!Skin.HasSetting(home_no_tvshows_studios_widget)</selected>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogMusicWidgetsContent. -->
 	<include name="SettingsDialogMusicWidgetsContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -389,6 +397,7 @@
 			<selected>!Skin.HasSetting(home_no_music_mostplayedalbums_widget)</selected>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsDialogMusicVideoWidgetsContent. -->
 	<include name="SettingsDialogMusicVideoWidgetsContent">
 		<control type="radiobutton" id="22101">
 			<include>DialogSettingButton</include>
@@ -425,94 +434,6 @@
 			<label>$LOCALIZE[20388]</label>
 			<onclick>Skin.ToggleSetting(home_no_musicvideos_studios_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_musicvideos_studios_widget)</selected>
-		</control>
-	</include>
-	<include name="SettingsDialogTVWidgetsContent">
-		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31148]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_categories_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_categories_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31016]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_recentlyplayed_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_recentlyplayed_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31015]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_recentrecordings_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_recentrecordings_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19040]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_timers_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_timers_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19173]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_channelgroups_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_channelgroups_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19337]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_savedsearches_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_savedsearches_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22107">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[855]</label>
-			<onclick>Skin.ToggleSetting(home_no_tv_recentlyaddedchannels_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_tv_recentlyaddedchannels_widget)</selected>
-		</control>
-	</include>
-	<include name="SettingsDialogRadioWidgetsContent">
-		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31148]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_categories_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_categories_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31018]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_recentlyplayed_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_recentlyplayed_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[31015]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_recentrecordings_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_recentrecordings_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19040]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_timers_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_timers_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19174]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_channelgroups_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_channelgroups_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[19337]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_savedsearches_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_savedsearches_widget)</selected>
-		</control>
-		<control type="radiobutton" id="22107">
-			<include>DialogSettingButton</include>
-			<label>$LOCALIZE[855]</label>
-			<onclick>Skin.ToggleSetting(home_no_radio_recentlyaddedchannels_widget)</onclick>
-			<selected>!Skin.HasSetting(home_no_radio_recentlyaddedchannels_widget)</selected>
 		</control>
 	</include>
 </includes>

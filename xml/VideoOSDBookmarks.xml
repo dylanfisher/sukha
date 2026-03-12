@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Video bookmark/chapter OSD. -->
 <!-- Usage: Provides bookmark and chapter controls during video playback. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">2</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="button">
 			<description>background close area</description>

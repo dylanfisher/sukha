@@ -2,6 +2,7 @@
 <!-- Purpose: Wide list view implementation. -->
 <!-- Usage: Defines a metadata-heavy list layout with more horizontal space per item. -->
 <includes>
+	<!-- Reusable include: View_55_WideList. -->
 	<include name="View_55_WideList">
 		<param name="bottom_offset">list_bottom_offset</param>
 		<definition>
@@ -204,6 +205,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: SongsListLayout. -->
 	<include name="SongsListLayout">
 		<focusedlayout height="list_item_height" condition="Container.Content(songs)">
 			<control type="image">
@@ -248,6 +250,7 @@
 			</control>
 		</itemlayout>
 	</include>
+	<!-- Reusable include: AddonsListLayout. -->
 	<include name="AddonsListLayout">
 		<focusedlayout height="list_item_height" condition="Container.Content(addons)">
 			<control type="image">

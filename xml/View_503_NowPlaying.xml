@@ -2,6 +2,7 @@
 <!-- Purpose: Now Playing view implementation. -->
 <!-- Usage: Defines the list/panel presentation used for now-playing style media screens. -->
 <includes>
+	<!-- Reusable include: View_503_NowPlaying. -->
 	<include name="View_503_NowPlaying">
 		<control type="group">
 			<include>OpenClose_Right</include>

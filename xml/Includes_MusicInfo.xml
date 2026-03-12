@@ -2,6 +2,7 @@
 <!-- Purpose: Shared music info includes. -->
 <!-- Usage: Contains reusable fragments for artist, album, and song information displays. -->
 <includes>
+	<!-- Reusable include: MusicInfoArtistInfo. -->
 	<include name="MusicInfoArtistInfo">
 		<item>
 			<label>$LOCALIZE[39027]:</label>
@@ -69,6 +70,7 @@
 			<visible>!String.IsEmpty(ListItem.Property(Artist_Disambiguation))</visible>
 		</item>
 	</include>
+	<!-- Reusable include: MusicInfoAlbumInfo. -->
 	<include name="MusicInfoAlbumInfo">
 		<item>
 			<label>$LOCALIZE[557]:</label>
@@ -151,6 +153,7 @@
 			<visible>!String.IsEmpty(ListItem.LastPlayed)</visible>
 		</item>
 	</include>
+	<!-- Reusable include: MusicInfoSongInfo. -->
 	<include name="MusicInfoSongInfo">
 		<item>
 			<label>$LOCALIZE[568]</label>

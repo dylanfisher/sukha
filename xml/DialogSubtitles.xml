@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Modal dialog for DialogSubtitles. -->
 <!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<centertop>50%</centertop>

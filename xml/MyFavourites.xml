@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Favourites browser window. -->
 <!-- Usage: Shows Kodi favourites and the related empty-state or item-state UI. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">500</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<views>50,52,53,55,500</views>
 	<menucontrol>9000</menucontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

@@ -2,6 +2,7 @@
 <!-- Purpose: Shared game UI includes. -->
 <!-- Usage: Defines reusable game-browser, game-info, and game-control fragments. -->
 <includes>
+	<!-- Reusable include: GameDialogControllers. -->
 	<include name="GameDialogControllers">
 		<control type="group">
 			<centertop>50%</centertop>
@@ -200,6 +201,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogPorts. -->
 	<include name="GameDialogPorts">
 		<control type="group">
 			<centertop>50%</centertop>
@@ -327,6 +329,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: GameDialogAgents. -->
 	<include name="GameDialogAgents">
 		<control type="group">
 			<centertop>50%</centertop>
@@ -537,6 +540,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: AgentControllerList. -->
 	<include name="AgentControllerList">
 		<control type="label">
 			<description>Controller name as reported by the driver</description>

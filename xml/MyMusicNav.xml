@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Main music library/navigation window. -->
 <!-- Usage: Hosts music browsing, media menu controls, and the currently selected music view. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<menucontrol>9000</menucontrol>
 	<views>50,52,53,54,55,500</views>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

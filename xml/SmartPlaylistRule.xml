@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Skin XML for SmartPlaylistRule. -->
 <!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">9001</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<centerleft>50%</centerleft>

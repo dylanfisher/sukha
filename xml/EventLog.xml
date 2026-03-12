@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Event log window. -->
 <!-- Usage: Displays Kodi notifications and logged events in a dedicated browsing screen. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<views>50</views>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Fullscreen video window. -->
 <!-- Usage: Hosts the main fullscreen playback surface and video playback overlays. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol></defaultcontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group" id="0">
 			<control type="label" id="10">

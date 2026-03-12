@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Profile settings window. -->
 <!-- Usage: Handles profile-related configuration and profile management UI. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group" id="9100">
@@ -95,7 +97,7 @@
 							<top>5</top>
 							<width>320</width>
 							<height>380</height>
-							<texture colordiffuse="button_focus">colors/grey.png</texture>
+							<texture colordiffuse="button_focus">colors/white.png</texture>
 							<bordersize>20</bordersize>
 							<include>Animation_FocusTextureFade</include>
 						</control>

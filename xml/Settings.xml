@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Main settings shell window. -->
 <!-- Usage: Hosts category navigation into Kodi's settings subsections. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">
@@ -72,11 +74,6 @@
 						<label>$LOCALIZE[14211]</label>
 						<onclick>ActivateWindow(MediaSettings)</onclick>
 						<icon>icons/settings/media.png</icon>
-					</item>
-					<item>
-						<label>$LOCALIZE[14204]</label>
-						<onclick>ActivateWindow(PVRSettings)</onclick>
-						<icon>icons/settings/livetv.png</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14036]</label>

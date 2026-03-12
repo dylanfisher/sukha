@@ -2,10 +2,12 @@
 <!-- Purpose: Shared animation includes. -->
 <!-- Usage: Reusable fade, slide, zoom, and open/close animation definitions referenced throughout the skin. -->
 <includes>
+	<!-- Reusable include: Animation_FocusTextureFade. -->
 	<include name="Animation_FocusTextureFade">
 		<animation effect="fade" start="0" end="100" time="200" tween="sine">Focus</animation>
 		<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
 	</include>
+	<!-- Reusable include: Animation_DialogPopupOpenClose. -->
 	<include name="Animation_DialogPopupOpenClose">
 		<animation type="WindowOpen" reversible="false">
 <effect type="fade" delay="160" end="100" time="240" />
@@ -15,6 +17,7 @@
 		</animation>
 		<depth>DepthDialog</depth>
 	</include>
+	<!-- Reusable include: Animation_DialogPopupVisible. -->
 	<include name="Animation_DialogPopupVisible">
 		<animation type="Visible" reversible="false">
 <effect type="fade" delay="160" end="100" time="240" />
@@ -23,20 +26,26 @@
 <effect type="fade" start="100" end="0" time="240" />
 		</animation>
 	</include>
+	<!-- Reusable include: Visible_Fade. -->
 	<include name="Visible_Fade">
 		<animation effect="fade" end="100" time="200">Visible</animation>
 		<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 	</include>
+	<!-- Reusable include: OpenClose_Fade. -->
 	<include name="OpenClose_Fade">
 		<animation effect="fade" end="100" time="200">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 	</include>
+	<!-- Reusable include: Visible_Right_Delayed. -->
 	<include name="Visible_Right_Delayed">
-		<include condition="Skin.HasSetting(no_slide_animations)">Visible_Fade</include>
-		<include content="Vis_FadeSlide_Right_Delayed" condition="!Skin.HasSetting(no_slide_animations)">
-			<param name="id" value="$PARAM[id]" />
-		</include>
+		<animation type="Conditional" condition="String.IsEqual(Container(9000).ListItem.Property(id),$PARAM[id])">
+			<effect type="fade" start="0" end="100" time="140" delay="40" tween="sine" easing="out" />
+		</animation>
+		<animation type="Hidden">
+			<effect type="fade" start="100" end="0" time="120" tween="sine" easing="out" />
+		</animation>
 	</include>
+	<!-- Reusable include: Vis_FadeSlide_Right_Delayed. -->
 	<include name="Vis_FadeSlide_Right_Delayed">
 		<animation type="Conditional" condition="String.IsEqual(Container(9000).ListItem.Property(id),$PARAM[id])">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" delay="300" easing="out" />
@@ -47,10 +56,16 @@
 			<effect type="slide" start="0" end="320" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: Visible_Right. -->
 	<include name="Visible_Right">
-		<include condition="Skin.HasSetting(no_slide_animations)">Visible_Fade</include>
-		<include condition="!Skin.HasSetting(no_slide_animations)">Vis_FadeSlide_Right</include>
+		<animation type="Visible" reversible="false">
+			<effect type="fade" start="0" end="100" time="140" tween="sine" easing="out"/>
+		</animation>
+		<animation type="Hidden" reversible="false">
+			<effect type="fade" start="100" end="0" time="120" tween="sine" easing="out" />
+		</animation>
 	</include>
+	<!-- Reusable include: Animation_TopSlide. -->
 	<include name="Animation_TopSlide">
 		<animation type="WindowOpen" reversible="false">
 			<effect type="fade" start="0" end="100" time="300"/>
@@ -61,6 +76,7 @@
 			<effect type="slide" start="0,0" end="0,-200" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: Animation_BottomSlide. -->
 	<include name="Animation_BottomSlide">
 		<animation type="WindowOpen" reversible="false">
 			<effect type="fade" start="0" end="100" time="300"/>
@@ -71,6 +87,7 @@
 			<effect type="slide" start="0,0" end="0,200" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: Vis_FadeSlide_Right. -->
 	<include name="Vis_FadeSlide_Right">
 		<animation type="Visible" reversible="false">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out"/>
@@ -81,10 +98,16 @@
 			<effect type="slide" start="0" end="320" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: Visible_Left. -->
 	<include name="Visible_Left">
-		<include condition="Skin.HasSetting(no_slide_animations)">Visible_Fade</include>
-		<include condition="!Skin.HasSetting(no_slide_animations)">Vis_FadeSlide_Left</include>
+		<animation type="Visible" reversible="false">
+			<effect type="fade" start="0" end="100" time="140" tween="sine" easing="out" />
+		</animation>
+		<animation type="Hidden" reversible="false">
+			<effect type="fade" start="100" end="0" time="120" tween="sine" easing="out" />
+		</animation>
 	</include>
+	<!-- Reusable include: Vis_FadeSlide_Left. -->
 	<include name="Vis_FadeSlide_Left">
 		<animation type="Visible" reversible="false">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
@@ -95,10 +118,16 @@
 			<effect type="slide" start="0" end="-320" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: OpenClose_Left. -->
 	<include name="OpenClose_Left">
-		<include condition="Skin.HasSetting(no_slide_animations)">OpenClose_Fade</include>
-		<include condition="!Skin.HasSetting(no_slide_animations)">OpenClose_FadeSlide_Left</include>
+		<animation type="WindowOpen">
+			<effect type="fade" start="0" end="100" time="140" tween="sine" easing="out" />
+		</animation>
+		<animation type="WindowClose">
+			<effect type="fade" start="100" end="0" time="120" tween="sine" easing="out" />
+		</animation>
 	</include>
+	<!-- Reusable include: OpenClose_FadeSlide_Left. -->
 	<include name="OpenClose_FadeSlide_Left">
 		<animation type="WindowOpen">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
@@ -109,10 +138,16 @@
 			<effect type="slide" start="0" end="-320" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: OpenClose_Right. -->
 	<include name="OpenClose_Right">
-		<include condition="Skin.HasSetting(no_slide_animations)">OpenClose_Fade</include>
-		<include condition="!Skin.HasSetting(no_slide_animations)">OpenClose_FadeSlide_Right</include>
+		<animation type="WindowOpen">
+			<effect type="fade" start="0" end="100" time="140" tween="sine" easing="out" />
+		</animation>
+		<animation type="WindowClose">
+			<effect type="fade" start="100" end="0" time="120" tween="sine" easing="out" />
+		</animation>
 	</include>
+	<!-- Reusable include: OpenClose_FadeSlide_Right. -->
 	<include name="OpenClose_FadeSlide_Right">
 		<animation type="WindowOpen">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
@@ -123,6 +158,7 @@
 			<effect type="slide" start="0" end="320" time="300" tween="cubic" easing="out" />
 		</animation>
 	</include>
+	<!-- Reusable include: Keyboard_Slide_Up. -->
 	<include name="Keyboard_Slide_Up">
 		<animation type="WindowOpen">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />

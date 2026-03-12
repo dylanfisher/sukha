@@ -1,135 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Modal dialog for DialogPlayerProcessInfo. -->
 <!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<depth>DepthOSD</depth>
 	<defaultcontrol always="true">5553</defaultcontrol>
 	<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
 	<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 	<onunload>ClearProperty(PlayerInfoDialogFocus,Home)</onunload>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<bottom>0</bottom>
 			<height>250</height>
-			<animation effect="slide" end="0,-20" time="150" condition="VideoPlayer.Content(LiveTV)">conditional</animation>
 			<control type="image">
 				<left>0</left>
 				<width>100%</width>
 				<top>-220</top>
 				<height>330</height>
 				<texture border="40">dialogs/dialog-bg-nobo.png</texture>
-			</control>
-			<control type="grouplist">
-				<left>50</left>
-				<top>-204</top>
-				<visible>String.IsEqual(Window(Home).Property(PlayerInfoDialogFocus),5551)</visible>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamServiceName,[COLOR button_focus]$LOCALIZE[19099]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamProviderName,[COLOR button_focus]$LOCALIZE[19101]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamClient,[COLOR button_focus]$LOCALIZE[19012]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamDevice,[COLOR button_focus]$LOCALIZE[19006]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamStatus,[COLOR button_focus]$LOCALIZE[19007]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamEncryptionName,[COLOR button_focus]$LOCALIZE[19015]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-			</control>
-			<control type="grouplist">
-				<left>985</left>
-				<top>-204</top>
-				<visible>String.IsEqual(Window(Home).Property(PlayerInfoDialogFocus),5551)</visible>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamBer,[COLOR button_focus]$LOCALIZE[19010]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamUnc,[COLOR button_focus]$LOCALIZE[19011]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamMux,[COLOR button_focus]$LOCALIZE[19100]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="label">
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamSignal,[COLOR button_focus]$LOCALIZE[19008]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="progress">
-					<top>5</top>
-					<width>885</width>
-					<height>18</height>
-					<info>PVR.ActStreamProgrSignal</info>
-				</control>
-				<control type="label">
-					<top>5</top>
-					<width>885</width>
-					<height>50</height>
-					<aligny>bottom</aligny>
-					<label>$INFO[PVR.ActStreamSNR,[COLOR button_focus]$LOCALIZE[19009]:[/COLOR] ]</label>
-					<font>font14</font>
-					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="progress">
-					<top>0</top>
-					<width>885</width>
-					<height>18</height>
-					<info>PVR.ActStreamProgrSNR</info>
-				</control>
 			</control>
 			<control type="grouplist">
 				<left>50</left>
@@ -370,14 +259,6 @@
 				<onup>Close</onup>
 				<ondown>Close</ondown>
 				<usecontrolcoords>true</usecontrolcoords>
-				<control type="button" id="5551">
-					<width>auto</width>
-					<height>100</height>
-					<textoffsetx>40</textoffsetx>
-					<label>$LOCALIZE[31137]</label>
-					<visible>VideoPlayer.Content(livetv)</visible>
-					<onfocus>SetProperty(PlayerInfoDialogFocus,5551,Home)</onfocus>
-				</control>
 				<control type="button" id="5552">
 					<width>auto</width>
 					<height>100</height>

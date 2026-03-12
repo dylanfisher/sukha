@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Modal dialog for DialogGameControllers. -->
 <!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<description>
 		Window for game functionality. This dialog was originally for controllers,
@@ -9,6 +10,7 @@
 	</description>
 	<defaultcontrol always="true">3</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include condition="Window.IsDialogTopMost(gamecontrollers)">GameDialogControllers</include>
 		<include condition="Window.IsDialogTopMost(gameports)">GameDialogPorts</include>

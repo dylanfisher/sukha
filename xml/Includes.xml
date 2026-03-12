@@ -10,7 +10,6 @@
 	<include file="Includes_Buttons.xml" />
 	<include file="Includes_DialogSelect.xml" />
 	<include file="Includes_MusicInfo.xml" />
-	<include file="Includes_PVR.xml" />
 	<include file="Includes_SettingsDialog.xml" />
 	<include file="View_50_List.xml" />
 	<include file="View_51_Poster.xml" />
@@ -23,10 +22,15 @@
 	<include file="Variables.xml" />
 	<include condition="Integer.IsLessOrEqual(System.ScreenHeight,720)" file="Constants_720.xml" />
 	<include condition="Integer.IsGreater(System.ScreenHeight,720)" file="Constants_1080.xml" />
-	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-embuary-video.xml) | Window.IsVisible(script-embuary-person.xml) | Window.IsVisible(script-embuary-image.xml)</expression>
+	<!-- Expression: infodialog_active. -->
+	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pictureinfo) | Window.IsVisible(script-embuary-video.xml) | Window.IsVisible(script-embuary-person.xml) | Window.IsVisible(script-embuary-image.xml)</expression>
+	<!-- Expression: sidebar_visible. -->
 	<expression name="sidebar_visible">ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131)</expression>
+	<!-- Expression: object_audio_true. -->
 	<expression name="object_audio_true">[String.IsEqual(ListItem.AudioCodec,eac3_ddp_atmos) | String.IsEqual(ListItem.AudioCodec,truehd_atmos) | String.IsEqual(ListItem.AudioCodec,dtshd_ma_x) | String.IsEqual(ListItem.AudioCodec,dtshd_ma_x_imax)] | [Window.IsActive(fullscreenvideo) + [String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos) | String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)]] | [Window.IsActive(visualisation) + [String.IsEqual(MusicPlayer.Codec,eac3_ddp_atmos) | String.IsEqual(MusicPlayer.Codec,truehd_atmos) | String.IsEqual(MusicPlayer.Codec,dtshd_ma_x) | String.IsEqual(MusicPlayer.Codec,dtshd_ma_x_imax)]]</expression>
+	<!-- Expression: videoasset_true. -->
 	<expression name="videoasset_true">Container.Content(videoassets) | Container.Content(videoversions) | Container.Content(videoextras)</expression>
+	<!-- Reusable include: CommonScrollbars. -->
 	<include name="CommonScrollbars">
 		<param name="bottom_offset">list_bottom_offset</param>
 		<definition>
@@ -82,6 +86,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: HiddenObject. -->
 	<include name="HiddenObject">
 		<left>-3000</left>
 		<top>-3000</top>
@@ -92,6 +97,7 @@
 		<label></label>
 		<font></font>
 	</include>
+	<!-- Reusable include: RatingCircle. -->
 	<include name="RatingCircle">
 		<param name="animation">false</param>
 		<definition>
@@ -106,6 +112,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: UserRatingContent. -->
 	<include name="UserRatingContent">
 		<visible>!String.IsEmpty($PARAM[infolabel])</visible>
 		<control type="image">
@@ -127,6 +134,7 @@
 			<label>$INFO[$PARAM[infolabel]]</label>
 		</control>
 	</include>
+	<!-- Reusable include: PosterWatchedBadge. -->
 	<include name="PosterWatchedBadge">
 		<param name="left">0</param>
 		<param name="top">0</param>
@@ -152,6 +160,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: PosterMetaBlock. -->
 	<include name="PosterMetaBlock">
 		<param name="left">4</param>
 		<param name="top">264</param>
@@ -159,6 +168,10 @@
 		<param name="title_height">24</param>
 		<param name="detail_top">280</param>
 		<param name="detail_height">16</param>
+		<param name="title_label">$INFO[ListItem.Label]</param>
+		<param name="detail_label">$INFO[ListItem.Year] - $INFO[ListItem.Director]</param>
+		<param name="detail_label_compact">$INFO[ListItem.Year]</param>
+		<param name="compact_for_tvshows">true</param>
 		<definition>
 			<control type="label">
 				<left>$PARAM[left]</left>
@@ -166,7 +179,7 @@
 				<width>$PARAM[width]</width>
 				<height>$PARAM[title_height]</height>
 				<font>font8</font>
-				<label>$INFO[ListItem.Label]</label>
+				<label>$PARAM[title_label]</label>
 			</control>
 			<control type="label">
 				<left>$PARAM[left]</left>
@@ -175,10 +188,22 @@
 				<height>$PARAM[detail_height]</height>
 				<font>font8</font>
 				<textcolor>grey</textcolor>
-				<label>$INFO[ListItem.Year] – $INFO[ListItem.Director]</label>
+				<label>$PARAM[detail_label_compact]</label>
+				<visible>String.IsEqual(ListItem.DBType,tvshow) + String.IsEqual($PARAM[compact_for_tvshows],true)</visible>
+			</control>
+			<control type="label">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[detail_top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[detail_height]</height>
+				<font>font8</font>
+				<textcolor>grey</textcolor>
+				<label>$PARAM[detail_label]</label>
+				<visible>!String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual($PARAM[compact_for_tvshows],false)</visible>
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: InfoList. -->
 	<include name="InfoList">
 		<param name="item_label">$INFO[ListItem.Year,[COLOR button_focus],[/COLOR]  -  ]$INFO[ListItem.Label]</param>
 		<param name="path">$VAR[InfoListPathVar]</param>
@@ -223,6 +248,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: PicsInfoLine. -->
 	<include name="PicsInfoLine">
 		<control type="grouplist">
 			<visible>!String.IsEmpty($PARAM[value])</visible>
@@ -246,6 +272,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: DefaultSimpleListLayout. -->
 	<include name="DefaultSimpleListLayout">
 		<param name="align">left</param>
 		<param name="height">70</param>
@@ -253,49 +280,16 @@
 		<param name="fontcolor">grey</param>
 		<definition>
 			<itemlayout width="$PARAM[width]" height="$PARAM[height]">
-				<control type="group">
-					<visible>ListItem.Property(PVR.IsRecordingTimer) | ListItem.Property(PVR.IsRemindingTimer)</visible>
-					<control type="image">
-						<left>20</left>
-						<width>40</width>
-						<aspectratio align="left">keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/recording.png</texture>
-						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<width>40</width>
-						<aspectratio align="left">keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/bell.png</texture>
-						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
-					</control>
-					<control type="label">
-						<left>80</left>
-						<top>0</top>
-						<right>20</right>
-						<bottom>0</bottom>
-						<align>$PARAM[align]</align>
-						<font>$PARAM[font]</font>
-						<aligny>center</aligny>
-						<textcolor>$PARAM[fontcolor]</textcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
-					<control type="label">
-						<left>20</left>
-						<top>0</top>
-						<right>20</right>
-						<bottom>0</bottom>
-						<align>$PARAM[align]</align>
-						<font>$PARAM[font]</font>
-						<aligny>center</aligny>
-						<textcolor>$PARAM[fontcolor]</textcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
+				<control type="label">
+					<left>20</left>
+					<top>0</top>
+					<right>20</right>
+					<bottom>0</bottom>
+					<align>$PARAM[align]</align>
+					<font>$PARAM[font]</font>
+					<aligny>center</aligny>
+					<textcolor>$PARAM[fontcolor]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
 				</control>
 			</itemlayout>
 			<focusedlayout width="$PARAM[width]" height="$PARAM[height]">
@@ -307,53 +301,21 @@
 					<texture colordiffuse="button_focus">lists/focus.png</texture>
 					<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 				</control>
-				<control type="group">
-					<visible>ListItem.Property(PVR.IsRecordingTimer) | ListItem.Property(PVR.IsRemindingTimer)</visible>
-					<control type="image">
-						<left>20</left>
-						<width>40</width>
-						<aspectratio align="left">keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/recording.png</texture>
-						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<width>40</width>
-						<aspectratio align="left">keep</aspectratio>
-						<aligny>center</aligny>
-						<texture>icons/pvr/timers/bell.png</texture>
-						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
-					</control>
-					<control type="label">
-						<left>80</left>
-						<top>0</top>
-						<right>20</right>
-						<bottom>0</bottom>
-						<align>$PARAM[align]</align>
-						<font>$PARAM[font]</font>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.Label]</label>
-						<scroll>true</scroll>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
-					<control type="label">
-						<left>20</left>
-						<top>0</top>
-						<right>20</right>
-						<bottom>0</bottom>
-						<align>$PARAM[align]</align>
-						<font>$PARAM[font]</font>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.Label]</label>
-						<scroll>true</scroll>
-					</control>
+				<control type="label">
+					<left>20</left>
+					<top>0</top>
+					<right>20</right>
+					<bottom>0</bottom>
+					<align>$PARAM[align]</align>
+					<font>$PARAM[font]</font>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+					<scroll>true</scroll>
 				</control>
 			</focusedlayout>
 		</definition>
 	</include>
+	<!-- Reusable include: MediaFlag. -->
 	<include name="MediaFlag">
 		<param name="texture">colors/white.png</param>
 		<param name="flag_visible">true</param>
@@ -372,6 +334,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: MediaFlags. -->
 	<include name="MediaFlags">
 		<param name="visible">true</param>
 		<definition>
@@ -521,6 +484,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: FileManagerPanel. -->
 	<include name="FileManagerPanel">
 		<param name="width"></param>
 		<param name="right"></param>
@@ -612,6 +576,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: AddonLauncherPanel. -->
 	<include name="AddonLauncherPanel">
 		<param name="fallback_image">DefaultFolder.png</param>
 		<definition>
@@ -680,6 +645,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: LeftAlignedInfo. -->
 	<include name="LeftAlignedInfo">
 		<param name="id">33333</param>
 		<definition>
@@ -712,6 +678,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: InfoDialogTopBarInfo. -->
 	<include name="InfoDialogTopBarInfo">
 		<param name="id">33333</param>
 		<param name="posy">20</param>
@@ -746,6 +713,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: UpDownArrows. -->
 	<include name="UpDownArrows">
 		<param name="up_posy">134</param>
 		<param name="down_posy">910</param>
@@ -778,6 +746,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: LeftRightArrows. -->
 	<include name="LeftRightArrows">
 		<param name="left_posx">445</param>
 		<param name="right_posx">1843</param>
@@ -824,6 +793,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: DialogBackgroundCommons. -->
 	<include name="DialogBackgroundCommons">
 		<control type="image">
 			<left>-2000</left>
@@ -911,6 +881,7 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: TopBar. -->
 	<include name="TopBar">
 		<param name="sublabel">$INFO[Container.SortMethod,$LOCALIZE[31022]: ,  •  ]$INFO[Container.CurrentItem,, / ]$INFO[Container.NumItems]</param>
 		<definition>
@@ -1086,6 +1057,7 @@
 			<include condition="Skin.HasSetting(touchmode) + !Window.IsActive(home)">TouchBackButton</include>
 		</definition>
 	</include>
+	<!-- Reusable include: TopBarLabels. -->
 	<include name="TopBarLabels">
 		<left>35</left>
 		<description>Left side of top bar</description>
@@ -1110,7 +1082,6 @@
 			<label>$INFO[Container.FolderName, / ]</label>
 			<include>BreadcrumbsLabel</include>
 			<visible>![Container.Content() + Window.IsActive(videos)]</visible>
-			<visible>![Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRProviders.xml)]</visible>
 		</control>
 		<control type="label">
 			<label>$VAR[BreadcrumbsVideoAssetTypeVar, / ]</label>
@@ -1134,6 +1105,7 @@
 			<visible>Container.Filtered</visible>
 		</control>
 	</include>
+	<!-- Reusable include: BreadcrumbsLabel. -->
 	<include name="BreadcrumbsLabel">
 		<font>font45</font>
 		<shadowcolor>text_shadow</shadowcolor>
@@ -1141,6 +1113,7 @@
 		<height>100</height>
 		<width>auto</width>
 	</include>
+	<!-- Reusable include: ColoredBackgroundImages. -->
 	<include name="ColoredBackgroundImages">
 		<control type="image">
 			<depth>DepthBackground</depth>
@@ -1156,15 +1129,9 @@
 			<visible>!String.IsEqual(Skin.String(background_overlay),0)</visible>
 		</control>
 	</include>
+	<!-- Reusable include: DefaultBackground. -->
 	<include name="DefaultBackground">
 		<definition>
-			<control type="videowindow">
-				<depth>DepthBackground</depth>
-				<include>FullScreenDimensions</include>
-				<visible>Player.HasVideo</visible>
-				<visible>!Slideshow.IsActive</visible>
-				<visible>!Window.IsActive(Home)</visible>
-			</control>
 			<control type="visualisation">
 				<include>FullScreenDimensions</include>
 				<visible>!Slideshow.IsActive</visible>
@@ -1178,6 +1145,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: BottomBar. -->
 	<include name="BottomBar">
 		<param name="info_visible">false</param>
 		<definition>
@@ -1206,17 +1174,6 @@
 						<onclick>SetFocus(9000)</onclick>
 						<visible>!Control.IsVisible(6160)</visible>
 					</control>
-					<control type="button" id="6160">
-						<bottom>20</bottom>
-						<left>12</left>
-						<width>36</width>
-						<height>36</height>
-						<texturefocus colordiffuse="button_focus">icons/menu.png</texturefocus>
-						<texturenofocus colordiffuse="FFCCCCCC">icons/menu.png</texturenofocus>
-						<animation effect="fade" time="200">VisibleChange</animation>
-						<onclick>SetFocus(9000)</onclick>
-						<visible>Window.IsActive(MyPVRGuide.xml)</visible>
-					</control>
 					<control type="button">
 						<bottom>16</bottom>
 						<left>64</left>
@@ -1233,6 +1190,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: BottomBarTwoListInfo. -->
 	<include name="BottomBarTwoListInfo">
 		<control type="group">
 			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
@@ -1284,12 +1242,14 @@
 			</control>
 		</control>
 	</include>
+	<!-- Reusable include: FullScreenDimensions. -->
 	<include name="FullScreenDimensions">
 		<left>0</left>
 		<top>0</top>
 		<width>100%</width>
 		<height>100%</height>
 	</include>
+	<!-- Reusable include: FocusableProgressBar. -->
 	<include name="FocusableProgressBar">
 		<param name="width">100%</param>
 		<param name="onunfocus_id">200</param>
@@ -1349,6 +1309,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: ContentPanel. -->
 	<include name="ContentPanel">
 		<param name="width">500</param>
 		<param name="left">-40</param>
@@ -1369,6 +1330,7 @@
 			</control>
 		</definition>
 	</include>
+	<!-- Reusable include: TouchButtons. -->
 	<include name="TouchButtons">
 		<control type="grouplist" id="700">
 			<orientation>horizontal</orientation>
@@ -1427,6 +1389,7 @@
 			</include>
 		</control>
 	</include>
+	<!-- Reusable include: TouchBackButton. -->
 	<include name="TouchBackButton">
 		<control type="radiobutton" id="799">
 			<left>-10</left>
@@ -1449,6 +1412,7 @@
 			<textureradiooffnofocus colordiffuse="grey">icons/back.png</textureradiooffnofocus>
 		</control>
 	</include>
+	<!-- Reusable include: TouchBackOSDButton. -->
 	<include name="TouchBackOSDButton">
 		<control type="radiobutton" id="799">
 			<left>-10</left>
@@ -1471,6 +1435,7 @@
 			<include>Animation_TopSlide</include>
 		</control>
 	</include>
+	<!-- Reusable include: TouchBackSlideshowButton. -->
 	<include name="TouchBackSlideshowButton">
 		<control type="radiobutton" id="13">
 			<left>-10</left>
@@ -1492,6 +1457,7 @@
 			<visible>!Window.IsVisible(PictureInfo)</visible>
 		</control>
 	</include>
+	<!-- Reusable include: SettingsPanel. -->
 	<include name="SettingsPanel">
 		<itemlayout height="260" width="400">
 			<control type="image">
@@ -1535,7 +1501,7 @@
 					<left>-5</left>
 					<width>410</width>
 					<height>270</height>
-					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<texture colordiffuse="button_focus">colors/white.png</texture>
 					<bordersize>20</bordersize>
 					<include>Animation_FocusTextureFade</include>
 				</control>
@@ -1559,6 +1525,7 @@
 			</control>
 		</focusedlayout>
 	</include>
+	<!-- Reusable include: MediaInfoListLayout. -->
 	<include name="MediaInfoListLayout">
 		<param name="height">125</param>
 		<param name="width">1000</param>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Modal dialog for DialogBusy. -->
 <!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<animation effect="fade" end="100" time="560">WindowOpen</animation>
 	<animation effect="fade" start="100" end="0" time="240">WindowClose</animation>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group">
 			<visible>String.IsEmpty(Window(Home).Property(script.cinemavision.running))</visible>

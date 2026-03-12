@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Shared playlist browser window. -->
 <!-- Usage: Displays playlist contents and the playback-related side controls for media playlists. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">55</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<menucontrol>9000</menucontrol>
 	<views>55,503</views>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

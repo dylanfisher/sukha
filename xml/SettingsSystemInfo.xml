@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: System information window. -->
 <!-- Usage: Shows hardware, display, network, and runtime information for the current Kodi session. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">95</defaultcontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">
@@ -187,14 +189,6 @@
 					</include>
 					<width>420</width>
 					<label>$LOCALIZE[13281]</label>
-				</control>
-				<control type="button" id="99">
-					<description>Button PVR</description>
-					<include content="DefaultSettingButton">
-						<param name="height" value="85" />
-					</include>
-					<width>420</width>
-					<label>$LOCALIZE[19191]</label>
 				</control>
 				<control type="button" id="100">
 					<description>Button Privacy policy</description>

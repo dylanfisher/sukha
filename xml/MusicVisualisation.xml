@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Skin XML for MusicVisualisation. -->
 <!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol></defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<onload condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(hide_background_fanart)">RunScript(script.artistslideshow)</onload>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="visualisation" id="2">
 			<include>FullScreenDimensions</include>
@@ -38,7 +40,7 @@
 			<include>ColoredBackgroundImages</include>
 		</control>
 		<control type="group">
-			<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
+			<visible>Player.ShowInfo | Window.IsActive(musicosd)</visible>
 			<height>460</height>
 			<include>OpenClose_Left</include>
 			<include>Visible_Left</include>
@@ -53,7 +55,7 @@
 				<left>20</left>
 				<top>-140</top>
 				<include>Visible_Left</include>
-				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
+				<visible>Player.ShowInfo | Window.IsActive(musicosd)</visible>
 				<width>400</width>
 				<height>400</height>
 				<fadetime>400</fadetime>
@@ -63,7 +65,7 @@
 				<bordersize>4</bordersize>
 			</control>
 			<control type="group">
-				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + ![Window.IsActive(playerprocessinfo) | MusicPlayer.Content(livetv)]</visible>
+				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !Window.IsActive(playerprocessinfo)</visible>
 				<include>Visible_Left</include>
 				<left>440</left>
 				<top>10</top>

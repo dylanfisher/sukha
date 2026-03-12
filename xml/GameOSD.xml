@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Purpose: Skin XML for GameOSD. -->
 <!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">1103</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>
 	<depth>DepthOSD</depth>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<control type="group" id="1">
 			<visible>!Window.IsActive(1101) + !Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents)</visible>

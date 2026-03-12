@@ -5,6 +5,7 @@
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<controls>
+		<!-- Hidden focus handoff controls used when moving between the sidebar and the active content panel. -->
 		<control type="button" id="20000">
 			<include>HiddenObject</include>
 			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
@@ -19,7 +20,11 @@
 			<onclick>noop</onclick>
 			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
 		</control>
+		<!-- Shared full-screen background layer for Home. -->
 		<include>DefaultBackground</include>
+			<!-- Main content region to the right of the sidebar.
+			     Group id 2000 is the parent container for all home-section widget stacks.
+			     The visible child group is determined by the currently focused sidebar item (fixedlist 9000). -->
 			<control type="group">
 				<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 				<control type="group" id="2000">
@@ -33,6 +38,10 @@
 					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
 				</animation>
 				<include>OpenClose_Right</include>
+				<!-- Movies section content.
+				     menu_id target: 5000
+				     sidebar item id property: movies
+				     Contains the movie home widgets such as in-progress, recently added, unwatched, and random. -->
 				<control type="group" id="5000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),movies)</visible>
 					<include content="Visible_Right_Delayed">
@@ -78,6 +87,10 @@
 						<param name="scrollbar_id" value="5010"/>
 					</include>
 				</control>
+				<!-- TV shows section content.
+				     menu_id target: 6000
+				     sidebar item id property: tvshows
+				     Contains TV categories plus in-progress, recent episodes, unwatched, genres, and studios widgets. -->
 				<control type="group" id="6000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),tvshows)</visible>
 					<include content="Visible_Right_Delayed">
@@ -86,13 +99,6 @@
 					<control type="grouplist" id="6001">
 						<include>WidgetGroupListCommon</include>
 						<pagecontrol>6010</pagecontrol>
-						<include content="WidgetListCategories" condition="Library.HasContent(tvshows) + !Skin.HasSetting(home_no_tvshows_categories_widget)">
-							<param name="content_path" value="library://video/tvshows/"/>
-							<param name="additional_tvshow_items" value="true"/>
-							<param name="widget_header" value="$LOCALIZE[31148]"/>
-							<param name="widget_target" value="videos"/>
-							<param name="list_id" value="6900"/>
-						</include>
 						<include content="WidgetListPoster" condition="Library.HasContent(tvshows) + !Skin.HasSetting(home_no_tvshows_inprogress_widget)">
 							<param name="content_path" value="videodb://inprogresstvshows"/>
 							<param name="sortby" value="lastplayed"/>
@@ -102,6 +108,9 @@
 							<param name="list_id" value="6100"/>
 							<param name="onclick_condition" value="true"/>
 							<param name="onclick_action" value="$VAR[TVShowOnClickActionVar]"/>
+							<param name="detail_label" value="$INFO[ListItem.Year]"/>
+							<param name="detail_label_compact" value="$INFO[ListItem.Year]"/>
+							<param name="compact_for_tvshows" value="false"/>
 						</include>
 						<include content="WidgetListEpisodes" condition="Library.HasContent(tvshows) + !Skin.HasSetting(home_no_tvshows_recentlyaddedepisodes_widget)">
 							<param name="content_path" value="special://skin/playlists/recent_unwatched_episodes.xsp"/>
@@ -116,6 +125,9 @@
 							<param name="list_id" value="6300"/>
 							<param name="onclick_condition" value="true"/>
 							<param name="onclick_action" value="$VAR[TVShowOnClickActionVar]"/>
+							<param name="detail_label" value="$INFO[ListItem.Year]"/>
+							<param name="detail_label_compact" value="$INFO[ListItem.Year]"/>
+							<param name="compact_for_tvshows" value="false"/>
 						</include>
 						<include content="WidgetListCategories" condition="Library.HasContent(tvshows) + !Skin.HasSetting(home_no_tvshows_genres_widget)">
 							<param name="content_path" value="videodb://tvshows/genres/"/>
@@ -145,6 +157,10 @@
 						<param name="scrollbar_id" value="6010"/>
 					</include>
 				</control>
+				<!-- Music section content.
+				     menu_id target: 7000
+				     sidebar item id property: music
+				     Contains music categories and album/artist widget rows. -->
 				<control type="group" id="7000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),music)</visible>
 					<include content="Visible_Right_Delayed">
@@ -227,6 +243,10 @@
 						<param name="scrollbar_id" value="7010"/>
 					</include>
 				</control>
+				<!-- Add-ons section content.
+				     menu_id target: 8000
+				     sidebar item id property: addons
+				     Contains add-on categories and recently used add-on source rows. -->
 				<control type="group" id="8000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),addons)</visible>
 					<include content="Visible_Right_Delayed">
@@ -309,172 +329,10 @@
 						<param name="scrollbar_id" value="8010"/>
 					</include>
 				</control>
-				<control type="group" id="12000">
-					<visible>String.IsEqual(Container(9000).ListItem.Property(id),livetv)</visible>
-					<include content="Visible_Right_Delayed">
-						<param name="id" value="livetv"/>
-					</include>
-					<control type="grouplist" id="12001">
-						<include>WidgetGroupListCommon</include>
-						<pagecontrol>12010</pagecontrol>
-						<include content="WidgetListCategories" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_categories_widget)">
-							<param name="content_path" value="pvr://tv/"/>
-							<param name="widget_header" value="$LOCALIZE[31148]"/>
-							<param name="list_id" value="12900"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_recentlyplayed_widget)">
-							<param name="content_path" value="pvr://channels/tv/*?view=lastplayed"/>
-							<param name="sortby" value="lastplayed"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[31016]"/>
-							<param name="widget_target" value="tvchannels"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="12200"/>
-							<param name="info_update" value="5000"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_recentrecordings_widget)">
-							<param name="content_path" value="pvr://recordings/tv/active?view=flat"/>
-							<param name="sortby" value="date"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[31015]"/>
-							<param name="widget_target" value="tvrecordings"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="12300"/>
-							<param name="label" value="$INFO[ListItem.Title]$INFO[ListItem.Date, (,)]"/>
-							<param name="label2" value="$VAR[SeasonEpisodeAndNameLabel]"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_timers_widget)">
-							<param name="content_path" value="pvr://timers/tv/timers/?view=hidedisabled"/>
-							<param name="sortorder" value="ascending"/>
-							<param name="sortby" value="date"/>
-							<param name="widget_header" value="$LOCALIZE[19040]"/>
-							<param name="widget_target" value="tvtimers"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="12400"/>
-							<param name="label" value="$INFO[ListItem.Title]$INFO[ListItem.Date, (,)]"/>
-							<param name="label2" value="$VAR[SeasonEpisodeAndNameLabel]"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_channelgroups_widget)">
-							<param name="content_path" value="pvr://channels/tv"/>
-							<param name="widget_header" value="$LOCALIZE[19173]"/>
-							<param name="widget_target" value="tvguide"/>
-							<param name="list_id" value="12500"/>
-							<param name="item_treshold" value="1"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_savedsearches_widget)">
-							<param name="content_path" value="pvr://search/tv/savedsearches"/>
-							<param name="sortorder" value="descending"/>
-							<param name="sortby" value="date"/>
-							<param name="widget_header" value="$LOCALIZE[19337]"/>
-							<param name="widget_target" value="tvsearch"/>
-							<param name="list_id" value="12600"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_tv_recentlyaddedchannels_widget)">
-							<param name="content_path" value="pvr://channels/tv/*?view=dateadded"/>
-							<param name="sortby" value="dateadded"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[855]"/>
-							<param name="widget_target" value="tvchannels"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="12700"/>
-							<param name="info_update" value="5000"/>
-							<param name="label2" value="$INFO[ListItem.DateAdded]"/>
-						</include>
-					</control>
-					<include content="ImageWidget" condition="!System.HasPVRAddon">
-						<param name="text_label" value="$LOCALIZE[31143]" />
-						<param name="button_label" value="$LOCALIZE[31144]" />
-						<param name="button_onclick" value="ActivateWindow(addonbrowser,addons://default_binary_addons_source/kodi.pvrclient,return)"/>
-						<param name="button_id" value="12400"/>
-						<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoTVButton)"/>
-					</include>
-					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
-						<param name="scrollbar_id" value="12010"/>
-					</include>
-				</control>
-				<control type="group" id="13000">
-					<visible>String.IsEqual(Container(9000).ListItem.Property(id),radio)</visible>
-					<include content="Visible_Right_Delayed">
-						<param name="id" value="radio"/>
-					</include>
-					<control type="grouplist" id="13001">
-						<include>WidgetGroupListCommon</include>
-						<pagecontrol>13010</pagecontrol>
-						<include content="WidgetListCategories" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_categories_widget)">
-							<param name="content_path" value="pvr://radio/"/>
-							<param name="widget_header" value="$LOCALIZE[31148]"/>
-							<param name="list_id" value="13900"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_recentlyplayed_widget)">
-							<param name="content_path" value="pvr://channels/radio/*?view=lastplayed"/>
-							<param name="sortby" value="lastplayed"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[31018]"/>
-							<param name="widget_target" value="radiochannels"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="13200"/>
-							<param name="info_update" value="5000"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_recentrecordings_widget)">
-							<param name="content_path" value="pvr://recordings/radio/active?view=flat"/>
-							<param name="sortby" value="date"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[31015]"/>
-							<param name="widget_target" value="radiorecordings"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="13300"/>
-							<param name="label" value="$INFO[ListItem.Title]$INFO[ListItem.Date, (,)]"/>
-							<param name="label2" value="$VAR[SeasonEpisodeAndNameLabel]"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_timers_widget)">
-							<param name="content_path" value="pvr://timers/radio/timers/?view=hidedisabled"/>
-							<param name="sortorder" value="ascending"/>
-							<param name="sortby" value="date"/>
-							<param name="widget_header" value="$LOCALIZE[19040]"/>
-							<param name="widget_target" value="radiotimers"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="13400"/>
-							<param name="label" value="$INFO[ListItem.Title]$INFO[ListItem.Date, (,)]"/>
-							<param name="label2" value="$VAR[SeasonEpisodeAndNameLabel]"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_channelgroups_widget)">
-							<param name="content_path" value="pvr://channels/radio"/>
-							<param name="widget_header" value="$LOCALIZE[19174]"/>
-							<param name="widget_target" value="radioguide"/>
-							<param name="list_id" value="13500"/>
-							<param name="item_treshold" value="1"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_savedsearches_widget)">
-							<param name="content_path" value="pvr://search/radio/savedsearches"/>
-							<param name="sortorder" value="descending"/>
-							<param name="sortby" value="date"/>
-							<param name="widget_header" value="$LOCALIZE[19337]"/>
-							<param name="widget_target" value="radiosearch"/>
-							<param name="list_id" value="13600"/>
-						</include>
-						<include content="WidgetListPVR" condition="System.HasPVRAddon + !Skin.HasSetting(home_no_radio_recentlyaddedchannels_widget)">
-							<param name="content_path" value="pvr://channels/radio/*?view=dateadded"/>
-							<param name="sortby" value="dateadded"/>
-							<param name="sortorder" value="descending"/>
-							<param name="widget_header" value="$LOCALIZE[855]"/>
-							<param name="widget_target" value="radiochannels"/>
-							<param name="item_limit" value="15"/>
-							<param name="list_id" value="13700"/>
-							<param name="info_update" value="5000"/>
-							<param name="label2" value="$INFO[ListItem.DateAdded]"/>
-						</include>
-					</control>
-					<include content="ImageWidget" condition="!System.HasPVRAddon">
-						<param name="text_label" value="$LOCALIZE[31143]" />
-						<param name="button_label" value="$LOCALIZE[31144]" />
-						<param name="button_onclick" value="ActivateWindow(addonbrowser,addons://default_binary_addons_source/kodi.pvrclient,return)"/>
-						<param name="button_id" value="13400"/>
-						<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoRadioButton)"/>
-					</include>
-					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
-						<param name="scrollbar_id" value="13010"/>
-					</include>
-				</control>
+				<!-- Pictures section content.
+				     menu_id target: 4000
+				     sidebar item id property: pictures
+				     Currently uses a simple category/source widget row. -->
 				<control type="group" id="4000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),pictures)</visible>
 					<include content="Visible_Right_Delayed">
@@ -491,6 +349,10 @@
 						</include>
 					</control>
 				</control>
+				<!-- Games section content.
+				     menu_id target: 17000
+				     sidebar item id property: games
+				     Shows game-related widgets when games are enabled. -->
 				<control type="group" id="17000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),games)</visible>
 					<include content="Visible_Right_Delayed">
@@ -521,6 +383,10 @@
 						<param name="scrollbar_id" value="17010"/>
 					</include>
 				</control>
+				<!-- Disc section content.
+				     menu_id target: 21000
+				     sidebar item id property: disc
+				     Used when optical media is present. -->
 				<control type="group" id="21000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),disc)</visible>
 					<include content="Visible_Right_Delayed">
@@ -544,12 +410,19 @@
 					</include>
 				</control>
 			</control>
+			<!-- Left sidebar chrome and navigation.
+			     This group contains the compact content panel background, sidebar menu, and top action rows. -->
 			<control type="group">
 				<depth>DepthContentPanel</depth>
 				<include>OpenClose_Left</include>
 				<include content="ContentPanel">
 					<param name="width" value="278" />
 				</include>
+				<!-- Primary home navigation menu.
+				     fixedlist id 9000 drives which content group above is visible.
+				     Each item sets:
+				       - property menu_id: the target content group id
+				       - property id: the semantic section key used by visibility conditions -->
 				<control type="fixedlist" id="9000">
 					<left>0</left>
 					<top>132</top>
@@ -627,6 +500,7 @@
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 					</itemlayout>
+					<!-- Sidebar menu item definitions. -->
 					<content>
 						<item>
 							<label>$LOCALIZE[342]</label>
@@ -665,22 +539,6 @@
 							<visible>System.HasMediaDVD</visible>
 						</item>
 						<item>
-							<label>$LOCALIZE[19020]</label>
-							<property name="menu_id">$NUMBER[12000]</property>
-							<onclick>ActivateWindow(TVChannels)</onclick>
-							<thumb>icons/sidemenu/livetv.png</thumb>
-							<property name="id">livetv</property>
-							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
-						</item>
-						<item>
-							<label>$LOCALIZE[19021]</label>
-							<property name="menu_id">$NUMBER[13000]</property>
-							<onclick>ActivateWindow(RadioChannels)</onclick>
-							<thumb>icons/sidemenu/radio.png</thumb>
-							<property name="id">radio</property>
-							<visible>!Skin.HasSetting(HomeMenuNoRadioButton)</visible>
-						</item>
-						<item>
 							<label>$LOCALIZE[15016]</label>
 							<property name="menu_id">$NUMBER[17000]</property>
 							<onclick>ActivateWindow(Games)</onclick>
@@ -706,6 +564,8 @@
 						</item>
 					</content>
 				</control>
+				<!-- Top utility action row for Home.
+				     Contains the always-available power, settings, and search buttons. -->
 				<control type="grouplist" id="700">
 					<orientation>horizontal</orientation>
 					<itemgap>10</itemgap>
@@ -775,6 +635,8 @@
 						<textureradiooffnofocus colordiffuse="grey">icons/search.png</textureradiooffnofocus>
 					</control>
 				</control>
+				<!-- Playback-only action row shown beneath the utility row when media is active.
+				     Contains fullscreen, stop, and player controls actions. -->
 				<control type="grouplist" id="701">
 					<orientation>horizontal</orientation>
 					<itemgap>10</itemgap>

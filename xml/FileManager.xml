@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: File manager window. -->
 <!-- Usage: Supports Kodi's dual-pane file management workflow. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol always="true">20</defaultcontrol>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="image">

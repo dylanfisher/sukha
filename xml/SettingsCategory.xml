@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Purpose: Settings category detail window. -->
 <!-- Usage: Displays controls for a selected Kodi settings category. -->
+<!-- Main window/dialog definition. -->
 <window>
 	<defaultcontrol>3</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
+	<!-- Main control tree for this window/dialog. -->
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">

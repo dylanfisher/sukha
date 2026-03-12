@@ -2,6 +2,7 @@
 <!-- Purpose: Icon wall view implementation. -->
 <!-- Usage: Defines a larger-tile grid view used for mixed content, genres, studios, and similar nodes. -->
 <includes>
+	<!-- Reusable include: View_52_IconWall. -->
 	<include name="View_52_IconWall">
 		<control type="group">
 			<visible>Control.IsVisible(52)</visible>
@@ -73,7 +74,7 @@
 						<control type="image">
 							<width>396</width>
 							<height>245</height>
-							<texture colordiffuse="button_focus">colors/grey.png</texture>
+							<texture colordiffuse="button_focus">colors/white.png</texture>
 							<bordersize>20</bordersize>
 							<include>Animation_FocusTextureFade</include>
 						</control>
@@ -140,7 +141,7 @@
 						<control type="image">
 							<width>330</width>
 							<height>140</height>
-							<texture colordiffuse="button_focus">colors/grey.png</texture>
+							<texture colordiffuse="button_focus">colors/white.png</texture>
 							<bordersize>20</bordersize>
 							<include>Animation_FocusTextureFade</include>
 						</control>
