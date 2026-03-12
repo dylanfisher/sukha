@@ -849,10 +849,57 @@
 		<value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma_x_imax) | [Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,dtshd_ma_x_imax)]">DTS:X IMAX</value>
 	</variable>
 	<variable name="AudioChannelsVar">
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,1)">1.0</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,2)">2.0</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,3)">2.1</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,4)">4.0</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,5)">5.0</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,6)">5.1</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,7)">6.1</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.AudioChannels,8)">7.1</value>
 		<value condition="Window.IsActive(fullscreenvideo)">$INFO[VideoPlayer.AudioChannels(DefaultLayout)]</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,1)">1.0</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,2)">2.0</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,3)">2.1</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,4)">4.0</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,5)">5.0</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,6)">5.1</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,7)">6.1</value>
+		<value condition="Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,8)">7.1</value>
 		<value condition="Window.IsActive(visualisation)">$INFO[MusicPlayer.Channels(DefaultLayout)]</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,1)">1.0</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,2)">2.0</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,3)">2.1</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,4)">4.0</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,5)">5.0</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,6)">5.1</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,7)">6.1</value>
+		<value condition="Container.Content(albums) | Window.IsActive(10502) + String.IsEqual(ListItem.MusicChannels,8)">7.1</value>
 		<value condition="Container.Content(albums) | Window.IsActive(10502)">$INFO[ListItem.MusicChannels(DefaultLayout)]</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,1)">1.0</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,2)">2.0</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,3)">2.1</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,4)">4.0</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,5)">5.0</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,6)">5.1</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,7)">6.1</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,8)">7.1</value>
 		<value>$INFO[ListItem.AudioChannels(DefaultLayout)]</value>
+	</variable>
+	<variable name="AudioStatusVar">
+		<value condition="Window.IsActive(fullscreenvideo) + $EXP[object_audio_true] + !String.IsEmpty(VideoPlayer.AudioChannels)">$VAR[ObjectAudioTypeVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="Window.IsActive(fullscreenvideo) + $EXP[object_audio_true]">$VAR[ObjectAudioTypeVar]</value>
+		<value condition="Window.IsActive(fullscreenvideo) + !String.IsEmpty(VideoPlayer.AudioCodec) + !String.IsEmpty(VideoPlayer.AudioChannels)">$VAR[AudioCodecVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="Window.IsActive(fullscreenvideo) + !String.IsEmpty(VideoPlayer.AudioCodec)">$VAR[AudioCodecVar]</value>
+		<value condition="Window.IsActive(visualisation) + $EXP[object_audio_true] + !String.IsEmpty(MusicPlayer.Channels)">$VAR[ObjectAudioTypeVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="Window.IsActive(visualisation) + $EXP[object_audio_true]">$VAR[ObjectAudioTypeVar]</value>
+		<value condition="Window.IsActive(visualisation) + !String.IsEmpty(MusicPlayer.Codec) + !String.IsEmpty(MusicPlayer.Channels)">$VAR[AudioCodecVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="Window.IsActive(visualisation) + !String.IsEmpty(MusicPlayer.Codec)">$VAR[AudioCodecVar]</value>
+		<value condition="$EXP[object_audio_true] + !String.IsEmpty(ListItem.AudioChannels)">$VAR[ObjectAudioTypeVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="$EXP[object_audio_true]">$VAR[ObjectAudioTypeVar]</value>
+		<value condition="!String.IsEmpty(ListItem.AudioCodec) + !String.IsEmpty(ListItem.AudioChannels)">$VAR[AudioCodecVar] • $VAR[AudioChannelsVar]</value>
+		<value condition="!String.IsEmpty(ListItem.AudioCodec)">$VAR[AudioCodecVar]</value>
+		<value>$VAR[AudioChannelsVar]</value>
 	</variable>
 	<variable name="StreamCodecVar">
 		<value condition="Window.IsVisible(dialogselectvideo) + String.IsEqual(ListItem.Property(stream.codec),av1)">AV1</value>

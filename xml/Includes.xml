@@ -305,16 +305,17 @@
 	<include name="MediaFlag">
 		<param name="texture">colors/white.png</param>
 		<param name="flag_visible">true</param>
+		<param name="font">font8</param>
 		<definition>
 			<control type="button">
 				<width>auto</width>
-				<height>33</height>
+				<height>34</height>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font_flag</font>
+				<font>$PARAM[font]</font>
 				<label>$PARAM[flag_label]</label>
-				<texturefocus border="MediaFlagBorder" infill="false" colordiffuse="white">$PARAM[texture]</texturefocus>
-				<texturenofocus border="MediaFlagBorder" infill="false" colordiffuse="white">$PARAM[texture]</texturenofocus>
+				<texturefocus border="10" colordiffuse="FF1C1C1C">$PARAM[texture]</texturefocus>
+				<texturenofocus border="10" colordiffuse="FF1C1C1C">$PARAM[texture]</texturenofocus>
 				<visible>$PARAM[flag_visible]</visible>
 			</control>
 		</definition>
@@ -325,31 +326,24 @@
 			<control type="grouplist">
 				<visible>Window.IsActive(Home) | Window.IsActive(10025) | Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)</visible>
 				<orientation>horizontal</orientation>
-				<right>20</right>
-				<height>40</height>
+				<right>0</right>
+				<bottom>0</bottom>
+				<height>34</height>
 				<align>right</align>
-				<itemgap>9</itemgap>
+				<itemgap>0</itemgap>
 				<width>1900</width>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
 					<width>114</width>
-					<height>36</height>
+					<height>34</height>
 					<fadetime>0</fadetime>
 					<aspectratio align="right" aligny="center">keep</aspectratio>
 					<texture>$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</texture>
 					<visible>System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible>
 				</control>
 				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(ListItem.Duration) + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$INFO[ListItem.Duration]" />
-				</include>
-				<include content="MediaFlag">
 					<param name="flag_visible" value="ListItem.IsStereoscopic + !Control.IsVisible(504)" />
 					<param name="flag_label" value="3D" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(ListItem.VideoCodec) + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$VAR[VideoCodecVar]" />
 				</include>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(ListItem.VideoResolution) + !Control.IsVisible(504)" />
@@ -360,20 +354,8 @@
 					<param name="flag_label" value="$VAR[VideoHDRTypeVar]" />
 				</include>
 				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(ListItem.VideoAspect) + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$INFO[ListItem.VideoAspect,,:1]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(ListItem.AudioCodec) + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$VAR[AudioCodecVar]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="$EXP[object_audio_true] + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$VAR[ObjectAudioTypeVar]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(ListItem.AudioChannels) + !Control.IsVisible(504)" />
-					<param name="flag_label" value="$VAR[AudioChannelsVar]" />
+					<param name="flag_visible" value="![String.IsEmpty(ListItem.AudioCodec) + String.IsEmpty(ListItem.AudioChannels)] + !Control.IsVisible(504) | [$EXP[object_audio_true] + !Control.IsVisible(504)]" />
+					<param name="flag_label" value="$VAR[AudioStatusVar]" />
 				</include>
 			</control>
 			<control type="grouplist">
@@ -391,10 +373,6 @@
 					<param name="flag_label" value="3D" />
 				</include>
 				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(VideoPlayer.VideoCodec)" />
-					<param name="flag_label" value="$VAR[VideoCodecVar]" />
-				</include>
-				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(VideoPlayer.VideoResolution)" />
 					<param name="flag_label" value="$INFO[VideoPlayer.VideoResolution]$VAR[VideoResolutionTypeVar, ]" />
 				</include>
@@ -403,20 +381,8 @@
 					<param name="flag_label" value="$VAR[VideoHDRTypeVar]" />
 				</include>
 				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(VideoPlayer.VideoAspect)" />
-					<param name="flag_label" value="$INFO[VideoPlayer.VideoAspect,,:1]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(VideoPlayer.AudioCodec)" />
-					<param name="flag_label" value="$VAR[AudioCodecVar]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="$EXP[object_audio_true]" />
-					<param name="flag_label" value="$VAR[ObjectAudioTypeVar]" />
-				</include>
-				<include content="MediaFlag">
-					<param name="flag_visible" value="!String.IsEmpty(VideoPlayer.AudioChannels)" />
-					<param name="flag_label" value="$VAR[AudioChannelsVar]" />
+					<param name="flag_visible" value="![String.IsEmpty(VideoPlayer.AudioCodec) + String.IsEmpty(VideoPlayer.AudioChannels)] | $EXP[object_audio_true]" />
+					<param name="flag_label" value="$VAR[AudioStatusVar]" />
 				</include>
 			</control>
 			<control type="grouplist">
