@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared variable definitions for labels, artwork, overlays, and navigation actions. -->
+<!-- Usage: Many windows and views resolve display text, art fallbacks, and button actions through these variables. -->
 <includes>
 	<variable name="PVRStatusImageVar">
 		<value condition="ListItem.IsRecording">windows/pvr/record.png</value>
@@ -452,7 +454,6 @@
 		<value condition="Skin.HasSetting(no_fanart)"></value>
 		<value condition="Window.IsActive(musicinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo)">$INFO[Window(home).Property(infobackground)]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Art(fanart))">$INFO[Container.ListItem.Art(fanart)]</value>
-		<value condition="!String.IsEmpty(Container.ListItem.Property(FanartCode))">$INFO[Skin.String(WeatherFanart.path)]$INFO[Container.ListItem.Property(FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</value>
 		<value condition="!String.IsEmpty(Skin.String(HomeFanart.path)) + Control.HasFocus(804)">$INFO[Skin.String(HomeFanart.path)]power$INFO[Skin.String(HomeFanart.ext)]</value>
 		<value condition="!String.IsEmpty(Skin.String(HomeFanart.path)) + Control.HasFocus(802)">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</value>
 		<value condition="!String.IsEmpty(Skin.String(HomeFanart.path)) + Control.HasFocus(803)">$INFO[Skin.String(HomeFanart.path)]favorites$INFO[Skin.String(HomeFanart.ext)]</value>
@@ -468,11 +469,6 @@
 		<value condition="!String.IsEmpty(Container.Art(tvshow.fanart))">$INFO[Container.Art(tvshow.fanart)]</value>
 		<value condition="!String.IsEmpty(Container.Art(artist.fanart))">$INFO[Container.Art(artist.fanart)]</value>
 		<value>$INFO[Container.Art(fanart)]</value>
-	</variable>
-	<variable name="WeatherFanartVar">
-		<value condition="!String.IsEmpty(Container.ListItem.Property(FanartCode))">$INFO[Skin.String(WeatherFanart.path)]$INFO[Container.ListItem.Property(FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</value>
-		<value condition="!String.IsEmpty(Weather.Data(current.fanartcode)) + !String.IsEmpty(Skin.String(weatherfanart.path))">$INFO[Skin.String(weatherfanart.path)]$INFO[Weather.Data(Current.FanartCode)]$INFO[Skin.String(weatherfanart.ext)]</value>
-		<value condition="!String.IsEmpty(Skin.String(HomeFanart.path))">$INFO[Skin.String(HomeFanart.path)]weather$INFO[Skin.String(HomeFanart.ext)]</value>
 	</variable>
 	<variable name="ListWatchedIconVar">
 		<value condition="ListItem.IsRecording">windows/pvr/record.png</value>
@@ -962,13 +958,5 @@
 		<value condition="String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$LOCALIZE[39108]</value>
 		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true)">$LOCALIZE[39106]</value>
 		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)">$LOCALIZE[39111]</value>
-	</variable>
-	<variable name="WeatherOutlookIconPrefixVar">
-		<value condition="!String.IsEmpty(Skin.String(WeatherOutlookIcon.path))">$INFO[Skin.String(WeatherOutlookIcon.path)]</value>
-		<value>resource://resource.images.weathericons.default/</value>
-	</variable>
-	<variable name="WeatherOutlookIconPostfixVar">
-		<value condition="!String.IsEmpty(Skin.String(WeatherOutlookIcon.path))">$INFO[Skin.String(WeatherOutlookIcon.ext)]</value>
-		<value>.png</value>
 	</variable>
 </includes>

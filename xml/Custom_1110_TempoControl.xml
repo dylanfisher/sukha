@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Custom tempo/speed control overlay. -->
+<!-- Usage: Used when playback tempo or speed controls need a dedicated lightweight dialog. -->
 <window id="1110" type="dialog">
 	<defaultcontrol>11</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>

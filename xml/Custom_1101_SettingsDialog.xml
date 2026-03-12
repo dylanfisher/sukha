@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Custom settings dialog wrapper. -->
+<!-- Usage: Provides a themed modal settings surface used by parts of the skin outside Kodi's default settings windows. -->
 <window type="dialog" id="1101">
 	<defaultcontrol always="true">11000</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared playlist browser window. -->
+<!-- Usage: Displays playlist contents and the playback-related side controls for media playlists. -->
 <window>
 	<defaultcontrol always="true">55</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

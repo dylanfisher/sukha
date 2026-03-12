@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Shared side media menu includes. -->
+<!-- Usage: Defines the left-side media menu, menu item styles, labels, and overlays used by browsing windows. -->
 <includes>
 	<include name="MediaMenuItemsCommon">
 		<width>470</width>

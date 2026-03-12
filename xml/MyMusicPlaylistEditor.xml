@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Main navigation window for MyMusicPlaylistEditor. -->
+<!-- Usage: Hosts browsing, shared chrome, and content views for this media section. -->
 <window>
 	<defaultcontrol always="true">6</defaultcontrol>
 	<views>50</views>

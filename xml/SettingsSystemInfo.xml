@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: System information window. -->
+<!-- Usage: Shows hardware, display, network, and runtime information for the current Kodi session. -->
 <window>
 	<defaultcontrol always="true">95</defaultcontrol>
 	<controls>

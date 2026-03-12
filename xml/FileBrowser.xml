@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Generic file browser window. -->
+<!-- Usage: Provides reusable file/folder browsing UI for media source and path selection flows. -->
 <window>
 	<defaultcontrol always="true">450</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>

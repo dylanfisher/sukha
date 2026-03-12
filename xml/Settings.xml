@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Main settings shell window. -->
+<!-- Usage: Hosts category navigation into Kodi's settings subsections. -->
 <window>
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

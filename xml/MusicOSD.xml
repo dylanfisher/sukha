@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Music playback OSD. -->
+<!-- Usage: Shown during audio playback to expose playback controls and now-playing information. -->
 <window>
 	<onload condition="!Player.PauseEnabled">SetFocus(603)</onload>
 	<defaultcontrol always="true">602</defaultcontrol>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Modal dialog for DialogVideoInfo. -->
+<!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
 <window>
 	<onload>SetFocus(5000,0,absolute)</onload>
 	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Art(fanart)],home)</onload>

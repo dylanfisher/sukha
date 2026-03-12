@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Video bookmark/chapter OSD. -->
+<!-- Usage: Provides bookmark and chapter controls during video playback. -->
 <window>
 	<defaultcontrol always="true">2</defaultcontrol>
 	<include>Animation_DialogPopupOpenClose</include>

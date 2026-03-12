@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Modal dialog for DialogAddonInfo. -->
+<!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<onload condition="!ListItem.Property(addon.isinstalled) + Window.IsActive(addonbrowser)">SetFocus(6)</onload>

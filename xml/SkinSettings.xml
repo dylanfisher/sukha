@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Skin-specific settings window. -->
+<!-- Usage: Exposes Sukha/Estuary-style theme settings, toggles, and customization controls. -->
 <window>
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -47,13 +49,6 @@
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(touchmode)</onclick>
 					<selected>Skin.HasSetting(touchmode)</selected>
-				</control>
-				<control type="radiobutton" id="704">
-					<label>$LOCALIZE[31093]</label>
-					<include>DefaultSettingButton</include>
-					<onclick condition="!String.IsEmpty(Weather.Plugin)">Skin.ToggleSetting(show_weatherinfo)</onclick>
-					<onclick condition="String.IsEmpty(Weather.Plugin)">ActivateWindow(servicesettings,weather)</onclick>
-					<selected>Skin.HasSetting(show_weatherinfo) + !String.IsEmpty(Weather.Plugin)</selected>
 				</control>
 				<control type="radiobutton" id="705">
 					<label>$LOCALIZE[31160]</label>
@@ -112,28 +107,11 @@
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 					<enable>!Skin.HasSetting(no_fanart)</enable>
 				</control>
-				<control type="button" id="609">
-					<label>$LOCALIZE[31062]</label>
-					<label2>$INFO[Skin.String(WeatherFanart.name)]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick condition="System.AddonIsEnabled(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherFanart&amp;type=resource.images.weatherfanart)</onclick>
-					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
-					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
-					<enable>!Skin.HasSetting(no_fanart)</enable>
-				</control>
 				<control type="button" id="6066">
 					<label>$LOCALIZE[31149]</label>
 					<label2>$INFO[Skin.String(MovieGenreFanart.Name)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick condition="System.AddonIsEnabled(script.image.resource.select)">RunScript(script.image.resource.select,property=MovieGenreFanart&amp;type=resource.images.moviegenrefanart)</onclick>
-					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
-					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
-				</control>
-				<control type="button" id="6068">
-					<label>$LOCALIZE[31177]</label>
-					<label2>$INFO[Skin.String(WeatherOutlookIcon.name)]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick condition="System.AddonIsEnabled(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherOutlookIcon&amp;type=resource.images.weathericons)</onclick>
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
@@ -297,12 +275,6 @@
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(HomeMenuNoFavButton)</selected>
 					<onclick>Skin.ToggleSetting(HomeMenuNoFavButton)</onclick>
-				</control>
-				<control type="radiobutton" id="617">
-					<label>$LOCALIZE[8]</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(HomeMenuNoWeatherButton)</selected>
-					<onclick>Skin.ToggleSetting(HomeMenuNoWeatherButton)</onclick>
 				</control>
 			</control>
 			<control type="grouplist" id="622">

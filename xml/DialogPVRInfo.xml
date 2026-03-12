@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: PVR dialog for DialogPVRInfo. -->
+<!-- Usage: Shown in live TV/radio contexts to expose PVR-specific information, controls, or management flows. -->
 <window>
 	<defaultcontrol always="true">5000</defaultcontrol>
 	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Art(fanart)],home)</onload>

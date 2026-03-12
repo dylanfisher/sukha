@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Playback top-bar overlay dialog (window id 1109). -->
+<!-- Usage: Used in playback-related contexts such as fullscreen video, visualisation, seekbar, and PVR OSD/guide overlays; it is not the library-browsing top bar. -->
 <window type="dialog" id="1109">
 	<onload>Skin.TimerStart(1109_topbaroverlay)</onload>
 	<visible>Window.IsActive(fullscreenvideo) | Window.IsActive(visualisation)</visible>
@@ -225,16 +227,6 @@
 			<control type="group">
 				<visible>!Window.IsVisible(extendedprogressdialog)</visible>
 				<animation effect="fade" time="150">VisibleChange</animation>
-				<control type="label">
-					<font>font_clock</font>
-					<shadowcolor>text_shadow</shadowcolor>
-					<top>0</top>
-					<right>20</right>
-					<height>200</height>
-					<width>600</width>
-					<align>right</align>
-					<label>$INFO[System.Time]</label>
-				</control>
 				<control type="grouplist">
 					<right>24</right>
 					<top>74</top>

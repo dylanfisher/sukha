@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared animation includes. -->
+<!-- Usage: Reusable fade, slide, zoom, and open/close animation definitions referenced throughout the skin. -->
 <includes>
 	<include name="Animation_FocusTextureFade">
 		<animation effect="fade" start="0" end="100" time="200" tween="sine">Focus</animation>

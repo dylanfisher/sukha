@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: 1080p-specific layout constants. -->
+<!-- Usage: Loaded when Kodi is running above 720p so shared dimensions can be reused across windows. -->
 <includes>
 	<constant name="MediaFlagBorder">2</constant>
 	<constant name="DepthDialog">0.50</constant>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Now Playing view implementation. -->
+<!-- Usage: Defines the list/panel presentation used for now-playing style media screens. -->
 <includes>
 	<include name="View_503_NowPlaying">
 		<control type="group">

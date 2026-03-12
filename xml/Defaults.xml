@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Core default values shared across the skin. -->
+<!-- Usage: Defines common constants and defaults that other XML files inherit or reference indirectly. -->
 <includes>
 	<default type="image">
 		<texture></texture>

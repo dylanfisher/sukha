@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Skin XML for MusicVisualisation. -->
+<!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
 <window>
 	<defaultcontrol></defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Icon wall view implementation. -->
+<!-- Usage: Defines a larger-tile grid view used for mixed content, genres, studios, and similar nodes. -->
 <includes>
 	<include name="View_52_IconWall">
 		<control type="group">

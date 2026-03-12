@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Screen calibration window. -->
+<!-- Usage: Used for overscan, aspect, and subtitle placement calibration. -->
 <window>
 	<defaultcontrol>8</defaultcontrol>
 	<controls>

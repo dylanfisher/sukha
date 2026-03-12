@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared button styles and button helper includes. -->
+<!-- Usage: Centralizes the focus textures, common button geometry, and reusable button components. -->
 <includes>
 	<include name="OSDButton">
 		<textureradioonfocus colordiffuse="white">$PARAM[texture]</textureradioonfocus>

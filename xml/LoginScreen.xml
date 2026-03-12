@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Profile/login screen. -->
+<!-- Usage: Shown when Kodi requires profile selection or login before entering the skin. -->
 <window>
 	<defaultcontrol always="true">52</defaultcontrol>
 	<controls>

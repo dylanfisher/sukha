@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared music info includes. -->
+<!-- Usage: Contains reusable fragments for artist, album, and song information displays. -->
 <includes>
 	<include name="MusicInfoArtistInfo">
 		<item>

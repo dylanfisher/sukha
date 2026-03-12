@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Central include registry and shared skin building blocks. -->
+<!-- Usage: Pulls in the other include files and defines shared expressions, variables, controls, and reusable fragments used across many windows. -->
 <includes>
 	<include file="Defaults.xml" />
 	<include file="Includes_Home.xml" />
@@ -337,22 +339,6 @@
 					<texture>$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</texture>
 					<visible>System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.Premiered)</visible>
-					<top>-2</top>
-					<width>32</width>
-					<height>32</height>
-					<aspectratio align="right" aligny="center">keep</aspectratio>
-					<texture colordiffuse="white">lists/year.png</texture>
-				</control>
-				<control type="label">
-					<visible>!String.IsEmpty(ListItem.Premiered)</visible>
-					<width>auto</width>
-					<height>33</height>
-					<aligny>center</aligny>
-					<font>font_flag</font>
-					<label>$INFO[ListItem.Premiered]</label>
-				</control>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(ListItem.Duration) + !Control.IsVisible(504)" />
 					<param name="flag_label" value="$INFO[ListItem.Duration]" />
@@ -461,7 +447,7 @@
 				</include>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(ListItem.BitRate)" />
-					 <param name="flag_label" value="$INFO[ListItem.BitRate, ,kbps]" /> 
+					 <param name="flag_label" value="$INFO[ListItem.BitRate, ,kbps]" />
 				</include>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(ListItem.MusicBitsPerSample)" />
@@ -504,7 +490,7 @@
 				</include>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(MusicPlayer.BitRate)" />
-					 <param name="flag_label" value="$INFO[MusicPlayer.BitRate, ,kbps]" /> 
+					 <param name="flag_label" value="$INFO[MusicPlayer.BitRate, ,kbps]" />
 				</include>
 				<include content="MediaFlag">
 					<param name="flag_visible" value="!String.IsEmpty(MusicPlayer.BitsPerSample)" />
@@ -516,48 +502,6 @@
 				</include>
 			</control>
 		</definition>
-	</include>
-	<include name="WeatherIconHome">
-		<control type="group">
-			<width>268</width>
-			<visible>!String.IsEmpty($PARAM[label])</visible>
-			<control type="image">
-				<left>40</left>
-				<width>80</width>
-				<height>80</height>
-				<texture colordiffuse="D0FFFFFF">$PARAM[texture]</texture>
-			</control>
-			<control type="textbox">
-				<top>110</top>
-				<width>160</width>
-				<height>63</height>
-				<font>font27_narrow</font>
-				<align>center</align>
-				<aligny>center</aligny>
-				<label>$INFO[$PARAM[label]]</label>
-			</control>
-		</control>
-	</include>
-	<include name="WeatherIconMyWeather">
-		<control type="group">
-			<width>268</width>
-			<visible>!String.IsEmpty($PARAM[label])</visible>
-			<control type="image">
-				<left>50</left>
-				<width>60</width>
-				<height>60</height>
-				<texture colordiffuse="D0FFFFFF">$PARAM[texture]</texture>
-			</control>
-			<control type="textbox">
-				<top>68</top>
-				<width>160</width>
-				<height>63</height>
-				<font>font27_narrow</font>
-				<align>center</align>
-				<aligny>center</aligny>
-				<label>$INFO[$PARAM[label]]</label>
-			</control>
-		</control>
 	</include>
 	<include name="FileManagerPanel">
 		<param name="width"></param>
@@ -1089,14 +1033,6 @@
 							<label>$INFO[System.ProfileName]</label>
 						</control>
 					</control>
-					<control type="label">
-						<font>font_clock</font>
-						<shadowcolor>text_shadow</shadowcolor>
-						<height>200</height>
-						<width>auto</width>
-						<animation effect="fade" start="100" end="0" time="300" condition="Window.Next(screencalibration)">WindowClose</animation>
-						<label>$INFO[System.Time]</label>
-					</control>
 				</control>
 				<control type="grouplist">
 					<right>10</right>
@@ -1123,24 +1059,6 @@
 						<aspectratio aligny="center" align="left">keep</aspectratio>
 						<texture>icons/power.png</texture>
 						<visible>System.HasAlarm(shutdowntimer)</visible>
-					</control>
-					<control type="label">
-						<height>50</height>
-						<width>auto</width>
-						<aligny>center</aligny>
-						<label>$INFO[Weather.Data(Current.Temperature)]</label>
-						<visible>Skin.HasSetting(show_weatherinfo) + Weather.IsFetched</visible>
-						<visible>!Window.IsActive(weather) + [!Window.IsActive(home) | !String.IsEqual(Container(9000).ListItem.Property(id),weather)]</visible>
-					</control>
-					<control type="image">
-						<top>1</top>
-						<width>50</width>
-						<height>50</height>
-						<fadetime>300</fadetime>
-						<aspectratio aligny="center" align="left">keep</aspectratio>
-						<texture>$INFO[Weather.Data(Current.FanartCode),weather/small/,.png]</texture>
-						<visible>Skin.HasSetting(show_weatherinfo) + Weather.IsFetched + ![String.IsEqual(Weather.Data(Current.FanartCode),na)]</visible>
-						<visible>!Window.IsActive(weather) + [!Window.IsActive(home) | !String.IsEqual(Container(9000).ListItem.Property(id),weather)]</visible>
 					</control>
 					<control type="image">
 						<top>8</top>

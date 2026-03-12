@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Info wall view implementation. -->
+<!-- Usage: Provides the artwork grid plus additional metadata layout used in richer browsing screens. -->
 <includes>
 	<include name="InfoWallPictureLayout">
 		<param name="focused">false</param>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Custom add-on launcher window. -->
+<!-- Usage: Presents a skin-specific launcher or shortcut-style UI for selected add-ons. -->
 <window id="1100">
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

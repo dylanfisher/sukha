@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purpose: Profile settings window. -->
+<!-- Usage: Handles profile-related configuration and profile management UI. -->
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

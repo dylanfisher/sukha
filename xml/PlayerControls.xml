@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Player controls window. -->
+<!-- Usage: Provides the dedicated playback control surface used in some playback contexts. -->
 <window>
 	<defaultcontrol always="true">201</defaultcontrol>
 	<visible>Player.HasMedia + Window.IsActive(PlayerControls) + !Window.IsActive(FullscreenVideo) + !Window.IsActive(FullscreenGame) + !Window.IsActive(Visualisation)</visible>

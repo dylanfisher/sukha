@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared settings dialog includes. -->
+<!-- Usage: Provides reusable controls and layouts used by skin settings and modal settings dialogs. -->
 <includes>
 	<include name="SettingsDialogOSDVisible">
 		<visible>!Window.IsActive(DialogSettings.xml) + !Window.IsActive(DialogSlider.xml) + !Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation)</visible>

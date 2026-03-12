@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Programs/add-ons navigation window. -->
+<!-- Usage: Displays program add-ons and related browsing UI in the main navigation context. -->
 <window>
 	<defaultcontrol always="true">52</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

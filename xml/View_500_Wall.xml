@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Sukha's custom Wall view implementation. -->
+<!-- Usage: Provides the wall/grid layouts used by the video library when the wall view is active. -->
 <includes>
 	<include name="View_500_Wall">
 		<control type="group">
@@ -11,7 +13,8 @@
 					<left>0</left>
 					<top>0</top>
 					<width>2020</width>
-				<height>100%</height>
+					<height>100%</height>
+					<showparentdiritems>false</showparentdiritems>
 				<onleft>9000</onleft>
 				<onright>531</onright>
 				<onup condition="Integer.IsGreater(Container.NumPages,1)">500</onup>

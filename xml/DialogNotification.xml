@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Modal dialog for DialogNotification. -->
+<!-- Usage: Opened by Kodi or the skin when this specific interaction requires a themed modal surface. -->
 <window>
 	<zorder>3</zorder>
 	<controls>

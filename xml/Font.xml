@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Font set definitions for the skin. -->
+<!-- Usage: Maps font ids used throughout the XML files to actual font files, sizes, and styles. -->
 <fonts>
 	<fontset id="Default" idloc="15109">
 		<!-- Normal Fonts -->

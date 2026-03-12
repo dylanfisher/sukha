@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: 720p-specific layout constants. -->
+<!-- Usage: Loaded on lower-resolution displays so shared dimensions scale appropriately. -->
 <includes>
 	<constant name="MediaFlagBorder">1.5</constant>
 	<constant name="DepthDialog">0.50</constant>

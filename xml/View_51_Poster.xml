@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Poster view implementation. -->
+<!-- Usage: Provides the poster-based browsing layout used for video-centric library sections. -->
 <includes>
 	<include name="View_51_Poster">
 		<control type="button" id="20000">

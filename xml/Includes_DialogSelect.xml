@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared building blocks for select dialogs. -->
+<!-- Usage: Contains reusable layouts and controls used by selection/picker dialogs. -->
 <includes>
 	<include name="DefaultDialogSelectLayout">
 		<control type="group">

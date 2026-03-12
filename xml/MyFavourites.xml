@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Favourites browser window. -->
+<!-- Usage: Shows Kodi favourites and the related empty-state or item-state UI. -->
 <window>
 	<defaultcontrol always="true">500</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>

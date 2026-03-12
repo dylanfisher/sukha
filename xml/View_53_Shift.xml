@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shift view implementation. -->
+<!-- Usage: Provides the staggered/carousel-like cover browsing layout used in selected content sections. -->
 <includes>
 	<include name="View_53_Shift">
 		<control type="group">

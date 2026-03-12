@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Startup/splash window. -->
+<!-- Usage: Handles the initial skin startup presentation before the normal windows take over. -->
 <window>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(no_fanart)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(hide_background_fanart)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.Reset(animate_background_fanart)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(HomeMenuNoMusicButton)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(HomeMenuNoTVButton)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(HomeMenuNoRadioButton)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(HomeMenuNoProgramsButton)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(HomeMenuNoGamesButton)</onload>
+	<onload condition="!Skin.HasSetting(sukha_defaults_applied)">Skin.SetBool(sukha_defaults_applied)</onload>
 	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
 	<controls />
 </window>

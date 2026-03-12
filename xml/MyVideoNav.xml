@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Main video library/navigation window. -->
+<!-- Usage: Hosts the Movies/TV browsing experience, includes the active video view, media menu, top/bottom bars, and background treatment. -->
 <window>
 	<defaultcontrol always="true">500</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -12,12 +14,6 @@
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<include>View_500_Wall</include>
-			<include content="TopBar">
-				<param name="breadcrumbs_label" value="$VAR[BreadcrumbsVideoVar]" />
-			</include>
-			<include content="BottomBar">
-				<param name="info_visible" value="true" />
-			</include>
 			<control type="group">
 				<depth>DepthBars</depth>
 				<bottom>10</bottom>

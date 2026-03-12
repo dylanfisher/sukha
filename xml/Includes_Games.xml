@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Shared game UI includes. -->
+<!-- Usage: Defines reusable game-browser, game-info, and game-control fragments. -->
 <includes>
 	<include name="GameDialogControllers">
 		<control type="group">

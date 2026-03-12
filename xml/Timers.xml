@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Purpose: Skin XML for Timers. -->
+<!-- Usage: Loaded by Kodi when this window, dialog, include set, or helper definition is needed. -->
 <timers>
     <timer>
         <name>autoclosevideoosd</name>
