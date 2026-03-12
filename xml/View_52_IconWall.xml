@@ -62,13 +62,7 @@
 				<focusedlayout height="280" width="440" condition="Container.Content() | Container.Content(files) | Container.Content(tags) | Container.Content(playlists) | [Container.Content(studios) + System.AddonIsEnabled(resource.images.studios.white)]">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="auto" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
-						</animation>
-						<top>150</top>
+<top>150</top>
 						<control type="image">
 							<width>396</width>
 							<height>245</height>
@@ -136,13 +130,7 @@
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<top>120</top>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="auto" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
-						</animation>
-						<control type="image">
+<control type="image">
 							<width>330</width>
 							<height>140</height>
 							<texture>dialogs/dialog-bg-nobo.png</texture>

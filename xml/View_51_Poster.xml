@@ -167,27 +167,11 @@
 					<texture>overlays/extras.png</texture>
 					<visible>ListItem.HasVideoVersions + ListItem.HasVideoExtras + !$EXP[videoasset_true]</visible>
 				</control>
-				<control type="label">
-					<left>100</left>
-					<top>684</top>
-					<width>330</width>
-					<height>32</height>
-					<label>$VAR[WatchedStatusVar]</label>
-					<font>font20_title</font>
-					<shadowcolor>text_shadow</shadowcolor>
-					<align>right</align>
-					<aligny>center</aligny>
-					<visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,set) | String.IsEqual(ListItem.DBType,season)</visible>
-				</control>
-				<control type="image">
-					<left>435</left>
-					<top>684</top>
-					<width>32</width>
-					<height>32</height>
-					<texture>$VAR[ItemStatusIconVar]</texture>
-					<align>right</align>
-					<aligny>center</aligny>
-				</control>
+				<include content="PosterWatchedBadge">
+					<param name="left" value="431" />
+					<param name="top" value="20" />
+					<param name="size" value="28" />
+				</include>
 			</control>
 			<control type="progress">
 				<left>4</left>

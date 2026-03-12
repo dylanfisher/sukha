@@ -330,8 +330,6 @@
 					</itemlayout>
 					<focusedlayout height="360" width="236" condition="Container.Content(artists)">
 						<control type="group">
-							<animation effect="zoom" start="100" end="105" time="200" tween="sine" easing="inout" center="160,180">Focus</animation>
-							<animation effect="zoom" start="105" end="100" time="200" tween="sine" easing="inout" center="160,180">UnFocus</animation>
 							<control type="image">
 								<top>-10</top>
 								<width>250</width>

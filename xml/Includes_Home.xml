@@ -6,7 +6,7 @@
 		<orientation>vertical</orientation>
 		<height>100%</height>
 		<scrolltime tween="cubic" easing="out">500</scrolltime>
-		<itemgap>-160</itemgap>
+		<itemgap>-135</itemgap>
 		<onup>20000</onup>
 		<ondown>20001</ondown>
 		<usecontrolcoords>true</usecontrolcoords>
@@ -16,10 +16,10 @@
 		<param name="item_treshold">0</param>
 		<definition>
 			<control type="label" id="$PARAM[list_id]666">
-				<left>55</left>
-				<top>80</top>
+				<left>0</left>
+				<top>10</top>
 				<width>900</width>
-				<height>90</height>
+				<height>50</height>
 				<label>$PARAM[label]</label>
 				<shadowcolor>text_shadow</shadowcolor>
 				<visible>$PARAM[visible]</visible>
@@ -44,34 +44,56 @@
 				<top>115</top>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<right>0</right>
-				<height>518</height>
+				<height>480</height>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
-				<itemlayout width="310" height="486">
+				<itemlayout width="188" height="326">
 					<control type="group">
-						<left>68</left>
-						<top>10</top>
-						<include content="InfoWallMovieLayout">
-							<param name="focused" value="false" />
+						<top>18</top>
+						<control type="image">
+							<left>4</left>
+							<top>0</top>
+							<width>176</width>
+							<height>258</height>
+							<texture fallback="DefaultMovies.png" background="true">$VAR[PosterThumbVar]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						<include content="PosterWatchedBadge">
+							<param name="left" value="158" />
+							<param name="top" value="0" />
+							<param name="size" value="22" />
 						</include>
+						<include content="PosterMetaBlock" />
 					</control>
 				</itemlayout>
-				<focusedlayout width="310" height="486">
+				<focusedlayout width="188" height="326">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<left>68</left>
-						<top>10</top>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="230,130" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="230,130" />
-						</animation>
-						<include content="InfoWallMovieLayout">
-							<param name="focused" value="true" />
+						<top>18</top>
+						<control type="image">
+							<left>2</left>
+							<top>-2</top>
+							<width>180</width>
+							<height>262</height>
+							<texture colordiffuse="button_focus">colors/white.png</texture>
+							<include>Animation_FocusTextureFade</include>
+						</control>
+						<control type="image">
+							<left>4</left>
+							<top>0</top>
+							<width>176</width>
+							<height>258</height>
+							<texture fallback="DefaultMovies.png" background="true">$VAR[PosterThumbVar]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						<include content="PosterWatchedBadge">
+							<param name="left" value="158" />
+							<param name="top" value="0" />
+							<param name="size" value="22" />
 						</include>
+						<include content="PosterMetaBlock" />
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15" browse="$PARAM[browse_mode]">$PARAM[content_path]</content>
@@ -194,12 +216,6 @@
 						<depth>DepthContentPopout</depth>
 						<left>70</left>
 						<top>5</top>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="230,120" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="230,120" />
-						</animation>
 						<include content="InfoWallEpisodeLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="sub_label" value="$PARAM[sub_label]" />
@@ -258,12 +274,6 @@
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>70</left>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="240,120" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="240,120" />
-						</animation>
 						<include content="InfoWallMusicLayout">
 							<param name="main_label" value="$PARAM[main_label]" />
 							<param name="single_label" value="$PARAM[single_label]" />
@@ -339,12 +349,6 @@
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>70</left>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="115" time="200" tween="sine" easing="inout" center="228,70" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="115" end="100" time="200" tween="sine" easing="inout" center="228,70" />
-						</animation>
 						<control type="image">
 							<width>316</width>
 							<height>200</height>
@@ -493,13 +497,11 @@
 							<align>center</align>
 							<aligny>top</aligny>
 						</control>
-						<control type="image">
-							<left>260</left>
-							<top>30</top>
-							<width>32</width>
-							<height>32</height>
-							<texture>$VAR[ItemStatusIconVar]</texture>
-						</control>
+						<include content="PosterWatchedBadge">
+							<param name="left" value="253" />
+							<param name="top" value="55" />
+							<param name="size" value="22" />
+						</include>
 						<control type="progress">
 							<left>20</left>
 							<top>300</top>
@@ -526,13 +528,7 @@
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>70</left>
-						<animation type="Focus">
-							<effect type="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="240,100" />
-						</animation>
-						<animation type="Unfocus">
-							<effect type="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="240,100" />
-						</animation>
-						<control type="image">
+<control type="image">
 							<width>319</width>
 							<height>340</height>
 							<texture>dialogs/dialog-bg-nobo.png</texture>
@@ -594,13 +590,11 @@
 							<scroll>true</scroll>
 							<aligny>top</aligny>
 						</control>
-						<control type="image">
-							<left>260</left>
-							<top>30</top>
-							<width>32</width>
-							<height>32</height>
-							<texture>$VAR[ItemStatusIconVar]</texture>
-						</control>
+						<include content="PosterWatchedBadge">
+							<param name="left" value="253" />
+							<param name="top" value="55" />
+							<param name="size" value="22" />
+						</include>
 						<control type="progress">
 							<left>20</left>
 							<top>300</top>

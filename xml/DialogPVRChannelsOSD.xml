@@ -40,7 +40,6 @@
 					<onleft>11</onleft>
 					<onright>NextChannelGroup</onright>
 					<texturesliderbackground />
-					<animation effect="zoom" start="100,100" end="50,100" center="982,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
 				</control>
 				<control type="image">
 					<left>0</left>

@@ -58,8 +58,6 @@
 					<width>28</width>
 					<height>28</height>
 					<texture flipx="true" colordiffuse="button_focus">overlays/arrowright.png</texture>
-					<animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
-					<animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
 				</control>
 				<control type="image">
 					<left>770</left>
@@ -67,8 +65,6 @@
 					<width>28</width>
 					<height>28</height>
 					<texture colordiffuse="button_focus">overlays/arrowright.png</texture>
-					<animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
-					<animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
 				</control>
 			</control>
 			<control type="group">
@@ -83,8 +79,6 @@
 					<onclick>SetFocus(13)</onclick>
 					<texturefocus flipx="true" colordiffuse="button_focus">overlays/arrowright.png</texturefocus>
 					<texturenofocus flipx="true">overlays/arrowright.png</texturenofocus>
-					<animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
-					<animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
 				</control>
 				<control type="button" id="14">
 					<left>770</left>
@@ -96,8 +90,6 @@
 					<onclick>SetFocus(14)</onclick>
 					<texturefocus colordiffuse="button_focus">overlays/arrowright.png</texturefocus>
 					<texturenofocus>overlays/arrowright.png</texturenofocus>
-					<animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
-					<animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
 				</control>
 			</control>
 		</control>

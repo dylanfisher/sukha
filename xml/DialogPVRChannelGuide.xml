@@ -112,7 +112,6 @@
 					<onleft>11</onleft>
 					<onright>11</onright>
 					<texturesliderbackground />
-					<animation effect="zoom" start="100,100" end="50,100" center="780,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
 				</control>
 			</control>
 			<control type="image">

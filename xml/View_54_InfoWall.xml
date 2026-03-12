@@ -301,53 +301,11 @@
 					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>
-			</control>
-			<control type="group">
-				<visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBType,season) | ListItem.IsRecording | ListItem.HasReminder | ListItem.HasTimer | ListItem.IsCollection | ListItem.HasVideoVersions | ListItem.IsPlaying | ListItem.IsResumable | ListItem.HasVideoExtras | ListItem.HasArchive | Integer.IsGreater(ListItem.Playcount,0)</visible>
-				<control type="image">
-					<left>35</left>
-					<top>335</top>
-					<width>250</width>
-					<height>50</height>
-					<texture colordiffuse="CCFFFFFF">overlays/overlayfade.png</texture>
-					<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
-				</control>
-				<control type="image">
-					<left>40</left>
-					<top>358</top>
-					<width>24</width>
-					<height>24</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<texture>$VAR[ItemTypeIconVar]</texture>
-				</control>
-				<control type="image">
-					<left>70</left>
-					<top>358</top>
-					<width>24</width>
-					<height>24</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<texture>overlays/extras.png</texture>
-					<visible>ListItem.HasVideoVersions + ListItem.HasVideoExtras + !$EXP[videoasset_true]</visible>
-				</control>
-				<control type="label">
-					<left>105</left>
-					<top>355</top>
-					<width>145</width>
-					<label>$VAR[WatchedStatusVar]</label>
-					<font>font20_title</font>
-					<shadowcolor>text_shadow</shadowcolor>
-					<align>right</align>
-					<visible>String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,set) | String.IsEqual(ListItem.DBType,season)</visible>
-				</control>
-				<control type="image">
-					<left>254</left>
-					<top>358</top>
-					<width>24</width>
-					<height>24</height>
-					<texture>$VAR[ItemStatusIconVar]</texture>
-				</control>
+				<include content="PosterWatchedBadge">
+					<param name="left" value="269" />
+					<param name="top" value="2" />
+					<param name="size" value="28" />
+				</include>
 			</control>
 			<control type="group">
 				<left>135</left>
@@ -399,8 +357,6 @@
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>30</left>
-						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="190,300">Focus</animation>
-						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="190,300">UnFocus</animation>
 						<top>120</top>
 						<include content="InfoWallMovieLayout">
 							<param name="focused" value="true" />
@@ -420,8 +376,6 @@
 				<focusedlayout height="301" width="300" condition="Container.Content(episodes) | Container.Content(videos) | [Container.Content(musicvideos) + !Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="220,250">Focus</animation>
-						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="220,250">UnFocus</animation>
 						<left>64</left>
 						<top>110</top>
 						<include content="InfoWallEpisodeLayout">
@@ -440,8 +394,6 @@
 				<focusedlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
-						<animation effect="zoom" start="100" end="115" time="200" tween="sine" easing="inout" center="200,350">Focus</animation>
-						<animation effect="zoom" start="115" end="100" time="200" tween="sine" easing="inout" center="200,350">UnFocus</animation>
 						<top>150</top>
 						<left>40</left>
 						<include content="InfoWallMusicLayout">
@@ -461,8 +413,6 @@
 						<depth>DepthContentPopout</depth>
 						<left>0</left>
 						<top>150</top>
-						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="180,330">Focus</animation>
-						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="180,330">UnFocus</animation>
 						<include content="InfoWallPictureLayout">
 							<param name="focused" value="true" />
 						</include>
