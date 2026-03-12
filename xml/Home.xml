@@ -714,7 +714,8 @@
 					<height>44</height>
 					<top>18</top>
 					<onup>SetFocus(9000,99,absolute)</onup>
-					<ondown>SetFocus(9000,0,absolute)</ondown>
+					<ondown condition="Player.HasMedia">701</ondown>
+					<ondown condition="!Player.HasMedia">SetFocus(9000,0,absolute)</ondown>
 					<onright>2000</onright>
 					<control type="radiobutton" id="804">
 						<width>44</width>
@@ -773,6 +774,18 @@
 						<textureradioofffocus>icons/search.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="grey">icons/search.png</textureradiooffnofocus>
 					</control>
+				</control>
+				<control type="grouplist" id="701">
+					<orientation>horizontal</orientation>
+					<itemgap>10</itemgap>
+					<left>12</left>
+					<width>144</width>
+					<height>44</height>
+					<top>72</top>
+					<onup>700</onup>
+					<ondown>SetFocus(9000,0,absolute)</ondown>
+					<onright>2000</onright>
+					<visible>Player.HasMedia</visible>
 					<control type="radiobutton" id="803">
 						<width>44</width>
 						<height>44</height>
@@ -792,6 +805,26 @@
 						<textureradioofffocus>icons/now-playing/fullscreen.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="grey">icons/now-playing/fullscreen.png</textureradiooffnofocus>
 						<visible>Player.HasMedia + !Player.IsRemote</visible>
+					</control>
+					<control type="radiobutton" id="806">
+						<width>44</width>
+						<height>44</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<onclick>PlayerControl(Stop)</onclick>
+						<font></font>
+						<label>$LOCALIZE[13]</label>
+						<texturefocus colordiffuse="button_focus">buttons/roundbutton-fo.png</texturefocus>
+						<texturenofocus />
+						<radioposx>12</radioposx>
+						<radioposy>12</radioposy>
+						<radiowidth>20</radiowidth>
+						<radioheight>20</radioheight>
+						<textureradioonfocus>icons/now-playing/stop.png</textureradioonfocus>
+						<textureradioonnofocus colordiffuse="grey">icons/now-playing/stop.png</textureradioonnofocus>
+						<textureradioofffocus>icons/now-playing/stop.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="grey">icons/now-playing/stop.png</textureradiooffnofocus>
+						<visible>Player.HasMedia</visible>
 					</control>
 					<control type="radiobutton" id="805">
 						<width>44</width>

@@ -1163,6 +1163,7 @@
 				<include>FullScreenDimensions</include>
 				<visible>Player.HasVideo</visible>
 				<visible>!Slideshow.IsActive</visible>
+				<visible>!Window.IsActive(Home)</visible>
 			</control>
 			<control type="visualisation">
 				<include>FullScreenDimensions</include>
