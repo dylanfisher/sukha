@@ -30,8 +30,8 @@
 			<screenshot>resources/screenshot-07.jpg</screenshot>
 			<screenshot>resources/screenshot-08.jpg</screenshot>
 		</assets>
-		<summary lang="en_US">Sukha skin by Dylan Fisher.</summary>
-		<description lang="en_US">Sukha is the default skin for Kodi 17.0 and above. It attempts to be easy for first time Kodi users to understand and use.</description>
-		<disclaimer lang="en_US">Sukha is the default skin for Kodi, removing it may cause issues</disclaimer>
+		<summary>Sukha skin by Dylan Fisher.</summary>
+		<description>Sukha is a Kodi skin based on Estuary.</description>
+		<disclaimer>Sukha is based on Estuary. Removing it may cause issues if it is your active skin.</disclaimer>
 	</extension>
 </addon>

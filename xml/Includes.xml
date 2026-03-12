@@ -18,9 +18,6 @@
 	<include file="View_55_WideList.xml" />
 	<include file="View_503_NowPlaying.xml" />
 	<include file="View_500_Wall.xml" />
-	<include file="View_501_Banner.xml" />
-	<include file="View_502_FanArt.xml" />
-	<include file="View_504_MediaList.xml" />
 	<include file="Variables.xml" />
 	<include condition="Integer.IsLessOrEqual(System.ScreenHeight,720)" file="Constants_720.xml" />
 	<include condition="Integer.IsGreater(System.ScreenHeight,720)" file="Constants_1080.xml" />
